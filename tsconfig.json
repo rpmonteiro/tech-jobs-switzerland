@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "outDir": "build/dist",
+    "target": "es5",
+    "lib": ["es6", "es7", "dom"],
+    "sourceMap": true,
+    "allowJs": false,
+    "jsx": "react",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "rootDir": "./src",
+    "noEmitOnError": false,
+    "isolatedModules": true,
+    "strictPropertyInitialization": false,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noErrorTruncation": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "diagnostics": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "dist",
+    "build",
+    "node_modules"
+  ],
+  "defaultSeverity": "warning"
+}
