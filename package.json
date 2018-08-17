@@ -1,0 +1,32 @@
+{
+  "name": "jobs-frontend",
+  "version": "1.0.0",
+  "description": "jobs-frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "start": "parcel src/index.html",
+    "build": "cross-env NODE_ENV=production parcel build --experimental-scope-hoisting src/index.html --public-url .",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "author": "Ricardo Monteiro & Samantha Parkyn",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/classnames": "^2.2.6",
+    "@types/parcel-env": "^0.0.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "cross-env": "5.2.0",
+    "gh-pages": "1.2.0",
+    "less": "^3.0.4",
+    "parcel-bundler": "1.9.3",
+    "parcel-plugin-bundle-visualiser": "^1.1.2",
+    "tslint": "^5.10.0",
+    "tslint-config-airbnb": "^5.9.2",
+    "typescript": "2.9.2"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "preact": "8.2.9"
+  }
+}
