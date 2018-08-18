@@ -1,4 +1,4 @@
-import { h, render, Component } from 'preact';
+import * as preact from 'preact';
 import { App } from './app';
 
 if (process.env.NODE_ENV === 'development') {

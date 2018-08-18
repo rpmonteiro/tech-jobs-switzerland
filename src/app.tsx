@@ -1,4 +1,4 @@
-import { h, render, Component } from 'preact';
+import * as preact from 'preact';
 import { Home } from './routes/home';
 import { NotFound } from './routes/not-found';
 import { About } from './routes/about';
@@ -9,7 +9,7 @@ interface State {
   location: string;
 }
 
-export class App extends Component<{}, State> {
+export class App extends preact.Component<{}, State> {
   state = {
     location: window.location.pathname
   };

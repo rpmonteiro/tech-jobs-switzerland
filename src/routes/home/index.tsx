@@ -1,7 +1,7 @@
-import { h, render, Component } from 'preact';
+import * as preact from 'preact';
 import { Button } from '../../components/button';
 
-export class Home extends Component {
+export class Home extends preact.Component {
   render() {
     return (
       <div class="home-page">

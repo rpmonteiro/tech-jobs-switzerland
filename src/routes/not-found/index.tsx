@@ -1,6 +1,6 @@
-import { h, render, Component } from 'preact';
+import * as preact from 'preact';
 
-export class NotFound extends Component {
+export class NotFound extends preact.Component {
   render() {
     return (
       <div>This is not found</div>

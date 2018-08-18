@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import * as preact from 'preact';
 import { Link } from '../link';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
   containerClass?: string;
 }
 
-export class Button extends Component<Props> {
+export class Button extends preact.Component<Props> {
   render() {
     const { text, containerClass, to } = this.props;
 

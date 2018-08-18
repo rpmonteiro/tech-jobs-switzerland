@@ -1,10 +1,10 @@
-import { h, Component, ComponentChildren, RenderableProps } from 'preact';
+import * as preact from 'preact';
 
 interface Props {
   to: string;
 }
 
-export class Link extends Component<RenderableProps<Props>> {
+export class Link extends preact.Component<preact.RenderableProps<Props>> {
   clickHandler = (e: MouseEvent) => {
     e.preventDefault();
     history.pushState(null, undefined, this.props.to);
