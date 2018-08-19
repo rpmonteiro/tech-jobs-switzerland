@@ -1,9 +1,9 @@
-import { h, render, Component } from 'preact';
+import * as preact from 'preact';
 
-export class About extends Component {
+export class About extends preact.Component {
   render() {
     return (
       <div>This is about</div>
-    )
+    );
   }
 }
