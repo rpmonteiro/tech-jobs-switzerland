@@ -47,10 +47,17 @@ module.exports = (baseConfig, env, defaultConfig) => {
       }
     ]
   })
+
+  defaultConfig.module.rules.push({
+    test: /\.less$/,
+    exclude: /node_modules/,
+    loaders: [ "style", "css", "less" ] 
+  })
   defaultConfig.resolve.alias = {
     'react': 'preact-compat',
     'react-dom': 'preact-compat'
   };
-  defaultConfig.resolve.extensions.push('.ts', '.tsx');
+  defaultConfig.resolve.extensions.push('.ts', '.tsx', '.css', '.less');
+
   return defaultConfig;
 };
