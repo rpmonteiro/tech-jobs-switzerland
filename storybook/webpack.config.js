@@ -51,7 +51,7 @@ module.exports = (baseConfig, env, defaultConfig) => {
   defaultConfig.module.rules.push({
     test: /\.less$/,
     exclude: /node_modules/,
-    loaders: [ "style", "css", "less" ] 
+    loaders: [ "style-loader", "css-loader", "less-loader" ] 
   })
   defaultConfig.resolve.alias = {
     'react': 'preact-compat',

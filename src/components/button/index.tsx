@@ -1,5 +1,6 @@
 import * as preact from 'preact';
 import { Link } from '../link';
+import './styles.less';
 
 interface Props {
   text: string;
@@ -22,8 +23,9 @@ export class Button extends preact.Component<Props> {
       : buttonText;
 
     return (
-      <div class={containerClass || 'button__container'}>
+      <div class={containerClass}>
         <button class="button">
+        hello
           {childEl}
         </button>
       </div>

@@ -1,5 +1,6 @@
 import * as preact from 'preact';
 import { Link } from '../link';
+import './styles.less';
 
 export const NavBar = () => (
   <nav class="navbar">
