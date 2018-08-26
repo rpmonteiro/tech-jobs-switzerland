@@ -1,6 +1,6 @@
 import Router from 'koa-router';
-import { getJobs } from 'endpoints/jobs';
-import { getJob } from 'endpoints/job';
+import { getJobs } from './endpoints/jobs';
+import { getJob } from './endpoints/job';
 
 const router = new Router();
 

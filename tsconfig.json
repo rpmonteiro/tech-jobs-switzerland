@@ -1,9 +1,17 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
-    "outDir": "build/dist",
+    "outDir": "dist",
     "target": "es5",
-    "lib": ["es6", "es7", "dom"],
+    "lib": [
+      "es6",
+      "es7",
+      "dom"
+    ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/typings"
+    ],
     "sourceMap": true,
     "allowJs": false,
     "jsx": "react",
@@ -13,7 +21,6 @@
     "allowSyntheticDefaultImports": true,
     "rootDir": "./src",
     "noEmitOnError": false,
-    "isolatedModules": true,
     "strictPropertyInitialization": false,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
