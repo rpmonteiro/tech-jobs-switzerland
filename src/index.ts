@@ -10,11 +10,11 @@ import { router } from './routes';
 
 const app = new Koa();
 massive({
-  host: '127.0.0.1',
-  port: 5432,
-  database: 'jobs',
-  user: 'postgres',
-  password: '123123'
+  user: config.dbUser,
+  host: config.dbHost,
+  port: config.dbPort,
+  database: config.dbName,
+  password: config.dbPassword
 }).then((db) => {
   app.context.db = db;
   app.use(helmet());
