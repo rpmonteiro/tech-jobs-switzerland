@@ -4,9 +4,14 @@ import './styles.less';
 
 export const NavBar = () => (
   <nav class="navbar">
-    <ul>
-      <li><Link to="/">Home</Link></li>
-      <li><Link to="/about">About</Link></li>
-    </ul>
+    <div class="navbar__container container-fluid">
+      <div class="logo">
+        <Link to="/">FE Jobs</Link>
+      </div>
+      <div class="links__container">
+        <Link to="/post-a-job">Post a job</Link>
+        <Link to="/about">About</Link>
+      </div>
+    </div>
   </nav>
 );
