@@ -1,19 +1,20 @@
 import * as preact from 'preact';
 import { Link } from '../link';
-import './styles.less';
+import classnames from 'classnames';
 
 interface Props {
-  text: string;
   to?: string;
+  text: string;
+  orange: boolean;
   containerClass?: string;
 }
 
 export class Button extends preact.Component<Props> {
   render() {
-    const { text, containerClass, to } = this.props;
+    const { text, containerClass, to, orange } = this.props;
 
     const buttonText = (
-      <span class="button__text">
+      <span className="button__text">
         {text}
       </span>
     );
@@ -23,12 +24,9 @@ export class Button extends preact.Component<Props> {
       : buttonText;
 
     return (
-      <div class={containerClass}>
-        <button class="button">
-        hello
-          {childEl}
-        </button>
-      </div>
+      <button className="button">
+        {childEl}
+      </button>
     );
   }
 }

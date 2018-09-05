@@ -6,12 +6,6 @@ export class Home extends preact.Component {
     return (
       <div class="home-page">
         <div>Test123</div>
-
-        <Button
-          to="#"
-          text="A nice little button with a link"
-          containerClass="home-button__container"
-        />
       </div>
     );
   }

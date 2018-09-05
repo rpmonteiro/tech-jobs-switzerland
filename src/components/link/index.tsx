@@ -2,6 +2,7 @@ import * as preact from 'preact';
 
 interface Props {
   to: string;
+  className?: string;
 }
 
 export class Link extends preact.Component<preact.RenderableProps<Props>> {
@@ -11,9 +12,9 @@ export class Link extends preact.Component<preact.RenderableProps<Props>> {
   }
 
   render() {
-    const { to, children } = this.props;
+    const { to, children, className = '' } = this.props;
     return (
-      <a href={to} onClick={this.clickHandler}>{children}</a>
+      <a class={className} href={to} onClick={this.clickHandler}>{children}</a>
     );
   }
 }

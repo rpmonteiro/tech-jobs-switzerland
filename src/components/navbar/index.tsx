@@ -1,16 +1,20 @@
 import * as preact from 'preact';
 import { Link } from '../link';
 import './styles.less';
+import { Button } from '../button';
 
 export const NavBar = () => (
-  <nav class="navbar">
-    <div class="navbar__container container-fluid">
-      <div class="logo">
+  <nav className="navbar">
+    <div className="navbar__container container-fluid">
+      <div className="logo">
         <Link to="/">FE Jobs</Link>
       </div>
-      <div class="links__container">
-        <Link to="/post-a-job">Post a job</Link>
-        <Link to="/about">About</Link>
+      <div className="links__container">
+        <Button
+          orange
+          text="Post a job"
+          to="/post-a-job"
+        />
       </div>
     </div>
   </nav>
