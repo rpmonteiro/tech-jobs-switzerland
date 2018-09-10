@@ -1,14 +1,14 @@
-import { BaseContext } from 'koa';
-const jobDummyData = require('../../dummy-data/job.json');
+import { BaseContext } from "koa";
+const jobDummyData = require("../../dummy-data/job.json");
 
 export async function getJob(ctx: BaseContext) {
-  const id = ctx.query.id
-  const job = ctx.db.find({ id });
+  // const id = ctx.query.id;
+  // const job = ctx.db.find({ id });
 
-  if (!job) {
-    ctx.throw('Job not found', 404);
-    return
-  }
+  // if (!job) {
+  //   ctx.throw("Job not found", 404);
+  //   return;
+  // }
 
   ctx.body = jobDummyData;
 }
