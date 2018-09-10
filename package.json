@@ -4,8 +4,8 @@
   "description": "jobs-frontend",
   "main": "index.js",
   "scripts": {
+    "dev": "parcel src/index.html",
     "test": "",
-    "start": "parcel src/index.html",
     "build": "cross-env NODE_ENV=production parcel build --experimental-scope-hoisting src/index.html --public-url .",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
