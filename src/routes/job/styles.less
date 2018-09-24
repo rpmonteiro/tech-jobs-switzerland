@@ -1,6 +1,26 @@
 .job-page {
   &__header {
     display: flex;
+    margin-bottom: @spacing-standard;
+
+    img {
+      margin-right: @spacing-standard;
+    }
+
+    &__title {
+      transform: translateY(-25%);
+    }
+
+    &__company-logo {
+      height: 60px;
+      width: 60px;
+    }
+
+    &__details {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
   }
 
   &__description {

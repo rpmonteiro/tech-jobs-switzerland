@@ -1,5 +1,5 @@
 @import "./variables.less";
-@import "./utils/normalize.css";
+@import "./utils/normalize";
 @import "./routes/home/styles.less";
 @import "./routes/job/styles.less";
 @import "./components/button/styles.less";
@@ -11,6 +11,7 @@
   Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
 body {
+  line-height: 1.3;
   font-family: @system;
   font-weight: 400;
   position: absolute;
@@ -44,14 +45,21 @@ button {
   display: flex;
   flex-direction: column;
   height: 100%;
+
+  &-page {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
 }
 
 .container-fluid {
   max-width: 1200px;
-  padding: 0 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   margin: 0 auto;
 
   @media @desktop {
-    padding: 0 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }

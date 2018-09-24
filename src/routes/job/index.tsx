@@ -1,6 +1,7 @@
 import * as preact from 'preact';
 import { getJob } from '../../api/job';
 import { emptyJob, Job } from '../../types';
+import { CompDetails, CompanyDetails } from '../../components/job-details';
 
 interface State {
   job: Job;
@@ -38,17 +39,11 @@ export class JobPage extends preact.Component<Props> {
 
     const jobHeader = (
       <div className="job-page__header">
-        <img src={job.logo} />
-        <div className="job-page__header-details">
-          <h3 className="job-page__title">{job.title}</h3>
-          <div className="row">
-            <div>{job.company}</div>
-            <div>{job.type}</div>
-          </div>
-          <div className="row">
-            <div>{job.salary}</div>
-            <div>{job.equity}</div>
-          </div>
+        <img className="job-page__header__company-logo" src={job.logo} />
+        <div className="job-page__header__details">
+          <h3 className="job-page__header__title">{job.title}</h3>
+          <CompanyDetails job={job} />
+          <CompDetails job={job} />
         </div>
       </div>
     );
@@ -59,6 +54,7 @@ export class JobPage extends preact.Component<Props> {
 
     const jobDescription = (
       <div className="job-page__description">
+        <h3>Job description</h3>
         <div dangerouslySetInnerHTML={{ __html: job.description }} />
       </div>
     );
@@ -71,7 +67,7 @@ export class JobPage extends preact.Component<Props> {
     );
 
     return (
-      <div class="job-page container-fluid">
+      <div class="job-page">
         {jobHeader}
         {jobDescription}
         {contactSection}

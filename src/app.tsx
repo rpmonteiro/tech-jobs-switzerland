@@ -27,31 +27,34 @@ export class App extends preact.Component<{}, State> {
 
   render() {
     const { pathname } = this.state;
-    const notFound = [<NavBar />, <NotFound />];
+    const notFound = <NotFound />;
 
-    let component;
+    let page;
     switch (true) {
       case pathname === '/':
-        component = [<NavBar />, <Home />];
+        page = <Home />;
         break;
       case pathname === '/about':
-        component = [<NavBar />, <About />];
+        page = <About />;
         break;
       case /job\//.test(pathname):
         const match = pathname.match(/([^\/]+)$/);
         console.log('inside job case', pathname, { match });
-        component = match
-          ? [<NavBar />, <JobPage id={match[1]} />]
+        page = match
+          ? <JobPage id={match[1]} />
           : notFound;
         break;
       default:
-        component = notFound;
+        page = notFound;
         break;
     }
 
     return (
       <div class="app">
-        {component}
+        <NavBar />
+        <div className="app-page container-fluid">
+          {page}
+        </div>
       </div>
     );
   }
