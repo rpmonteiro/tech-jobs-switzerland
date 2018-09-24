@@ -10,5 +10,7 @@ export async function getJob(ctx: BaseContext) {
   //   return;
   // }
 
-  ctx.body = jobDummyData;
+  ctx.body = {
+    data: jobDummyData
+  };
 }

@@ -1,52 +1,52 @@
-exports.up = function (db) {
-  return db.createTable('jobs', {
+exports.up = function(db) {
+  return db.createTable("jobs", {
     id: {
-      type: 'int',
+      type: "int",
       primaryKey: true,
       autoIncrement: true,
       notNull: true,
       unique: true
     },
     title: {
-      type: 'string',
+      type: "string",
       notNull: true
     },
     teaser: {
-      type: 'string'
+      type: "string"
     },
     company: {
-      type: 'string',
+      type: "string",
       notNull: true
     },
     logo: {
-      type: 'string',
+      type: "string",
       notNull: true
     },
     location: {
-      type: 'string',
+      type: "string",
       notNull: true
     },
     type: {
-      type: 'string',
+      type: "string",
       notNull: true
     },
     salary: {
-      type: 'int'
+      type: "int"
     },
     equity: {
-      type: 'decimal'
+      type: "string"
     },
     email: {
-      type: 'string',
+      type: "string",
       notNull: true
     },
     description: {
-      type: 'string',
+      type: "string",
       notNull: true
     }
-  })
+  });
 };
 
-exports.down = function (db) {
-  return db.dropTable('jobs');
+exports.down = function(db) {
+  return db.dropTable("jobs");
 };
