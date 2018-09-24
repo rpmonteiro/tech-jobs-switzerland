@@ -1,4 +1,5 @@
 import { config } from '../config';
+import { Job, ApiResponse, Omit } from '../types';
 
 export function getJob(id: string): Promise<Job> {
   const url = `${config.API_HOST}/job/${id}`;
@@ -34,7 +35,7 @@ export function fetch<T>(url: string, opts?: RequestInit): Promise<T> {
     })
     .then(data => data.data)
     .catch((error: Error) => {
-      // some service to catch errors is called here -> service(error)
+      // some service to catch errors (sentry, rollbar, etc.) is called here -> service(error)
       // re-throw the error so the client can catch it
       throw error;
     });

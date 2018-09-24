@@ -1,6 +1,7 @@
 import * as preact from 'preact';
 import { Button } from '../../components/button';
 import { getJobs } from '../../api/job';
+import { JobList } from '../../components/job-list';
 
 interface State {
   jobs: Job[];
@@ -22,9 +23,7 @@ export class Home extends preact.Component {
   }
 
   render() {
-    const { jobs, error, loading } = this.state;
-
-    console.log({ jobs, error });
+    const { jobs, loading } = this.state;
 
     if (loading) {
       return <div>Loading...</div>;
@@ -32,7 +31,7 @@ export class Home extends preact.Component {
 
     return (
       <div class="home-page">
-        <div>Test123</div>
+        <JobList jobs={jobs} />
       </div>
     );
   }

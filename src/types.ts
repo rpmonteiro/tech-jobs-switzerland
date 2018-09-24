@@ -1,27 +1,41 @@
-type JobType = 'fulltime' | 'part-time' | 'contract' | 'internship'
+type JobType = 'fulltime' | 'part-time' | 'contract' | 'internship';
 
-interface Job {
+export const emptyJob: Job = {
+  id: '',
+  title: '',
+  teaser: '',
+  company: '',
+  created: '',
+  logo: '',
+  location: '',
+  type: 'fulltime',
+  email: '',
+  description: ''
+};
+
+export interface Job {
   id: string;
   title: string;
+  description: string;
   teaser: string;
   company: string;
   created: string;
   logo: string;
   location: string;
   type: JobType;
-  salary?: number;
-  equity?: number;
-  email: string;
-  description: string;
+  salary?: string;
+  equity?: string;
+  email?: string;
+  link?: string;
 }
 
-declare type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
-interface ApiResponse<T> {
+export interface ApiResponse<T> {
   data: T;
   message?: string;
 }
 
-interface AppConfig {
+export interface AppConfig {
   API_HOST: string;
 }

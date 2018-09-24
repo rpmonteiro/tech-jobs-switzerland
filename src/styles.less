@@ -1,9 +1,18 @@
-@import './variables.less';
-@import './utils/normalize.css';
-@import './routes/home/styles.less';
-@import './components/button/styles.less';
+@import "./variables.less";
+@import "./utils/normalize.css";
+@import "./routes/home/styles.less";
+@import "./routes/job/styles.less";
+@import "./components/button/styles.less";
+@import "./components/job-list/styles.less";
+@import "./components/job-details/styles.less";
+@import "./components/job-card/styles.less";
+
+@system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans,
+  Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
 body {
+  font-family: @system;
+  font-weight: 400;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -12,7 +21,13 @@ body {
   margin: 0;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
 a {
+  color: inherit;
   text-decoration: none;
 }
 

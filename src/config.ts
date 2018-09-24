@@ -1,3 +1,5 @@
+import { AppConfig } from './types';
+
 const isProduction = process.env.NODE_ENV === 'production';
 const API_HOST = isProduction
   ? process.env.API_HOST
