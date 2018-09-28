@@ -1,5 +1,5 @@
 .job-details {
-  font-size: @font-size-small;
+  font-size: @font-size-smaller;
 
   > * {
     width: 50%;
@@ -11,7 +11,14 @@
 
   img {
     margin-right: 2px;
-    height: 12px;
+    height: 14px;
+  }
+
+  &__company {
+    img {
+      margin-left: -2px;
+      margin-right: @spacing-tiny;
+    }
   }
   
   &__salary {
@@ -21,9 +28,11 @@
   }
 
   &__equity {
+    margin-left: @spacing-tiny;
+
     img {
       height: 10px;
-      margin: 0 4px -1px 2px;
+      margin: 0 4px 0px 2px;
     }
   }
 }

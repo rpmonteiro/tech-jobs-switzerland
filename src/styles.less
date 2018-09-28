@@ -2,6 +2,7 @@
 @import "./utils/normalize";
 @import "./routes/home/styles.less";
 @import "./routes/job/styles.less";
+@import "./components//navbar/styles.less";
 @import "./components/button/styles.less";
 @import "./components/job-list/styles.less";
 @import "./components/job-details/styles.less";
@@ -42,12 +43,15 @@ button {
 }
 
 .app {
-  display: flex;
-  flex-direction: column;
   height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
   &-page {
-    padding-top: 2rem;
+    padding-top: 1rem;
     padding-bottom: 2rem;
   }
 }

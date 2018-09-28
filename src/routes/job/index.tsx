@@ -2,6 +2,7 @@ import * as preact from 'preact';
 import { getJob } from '../../api/job';
 import { emptyJob, Job } from '../../types';
 import { CompDetails, CompanyDetails } from '../../components/job-details';
+import { Button } from '../../components/button';
 
 interface State {
   job: Job;
@@ -13,7 +14,7 @@ interface Props {
   id: string;
 }
 
-export class JobPage extends preact.Component<Props> {
+export class JobPage extends preact.Component<Props, State> {
   state = {
     job: emptyJob,
     error: '',
@@ -47,10 +48,6 @@ export class JobPage extends preact.Component<Props> {
         </div>
       </div>
     );
-    // const jobDetails = (
-    //   <div className="job-page__details">
-    //   </div>
-    // );
 
     const jobDescription = (
       <div className="job-page__description">
@@ -59,10 +56,9 @@ export class JobPage extends preact.Component<Props> {
       </div>
     );
 
-    const contactSection = (
-      <div className="job-page__contact">
-        {job.link && <a className="job-page__link">{job.link}</a>}
-        {job.email && <div className="job-page__email">{job.email}</div>}
+    const applyButton = (
+      <div className="job-page__button-container">
+        <Button color="red" text="Apply for this job" to={job.link} />
       </div>
     );
 
@@ -70,7 +66,7 @@ export class JobPage extends preact.Component<Props> {
       <div class="job-page">
         {jobHeader}
         {jobDescription}
-        {contactSection}
+        {applyButton}
       </div>
     );
   }

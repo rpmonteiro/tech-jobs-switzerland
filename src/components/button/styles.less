@@ -1,9 +1,20 @@
 .button {  
-  border-radius: 5px;
-  padding: 8px 15px;
+  border-radius: 3px;
+  padding: 0 @spacing-standard;
   background-color: @color-primary;
+  font-size: @font-size-smaller;
+  font-weight: 500;
+  height: 35px;
+
+  &-red {
+    background-color: @color-red;
+  }
   
   > * {
     color: @color-white;
+  }
+
+  a {
+    margin-top: -2px;
   }
 }

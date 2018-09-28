@@ -1,51 +1,42 @@
 .job-card {
   display: flex;
   padding: 1rem;
-  font-size: @font-size-smaller;
+  border-radius: 2px;
+  background-color: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: background-color 100ms;
 
-  &:active {
-    .job-card__title {
-      color: @color-red;
-    }
-  }
-
   &__title {
-    font-size: @font-size-small;
+    font-size: @font-size-normal;
     font-weight: 700;
     transition: color 50ms;
   }
 
   &__type {
+    font-size: @font-size-smaller;
     margin-top: 2px;
 
     img {
       margin-right: @spacing-tiny;
-      height: 10px;
+      height: 13px;
     }
   }
 
   &__image {
-    height: 60px;
-    width: 60px;
+    img {
+      height: 60px;
+      width: 60px;
+    }
   }
 
   &__details {
     margin-left: 1rem;
-    display: flex;
-    flex-direction: column;
-    font-size: @font-size-tiny;
 
     .row {
       display: flex;
       font-weight: 500;
       margin-top: @spacing-small;
       align-items: baseline;
-
-      > * + * {
-        margin-left: @spacing-small;
-      }
 
       &:first-child {
         margin-top: @spacing-tiny;

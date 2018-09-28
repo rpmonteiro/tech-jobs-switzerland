@@ -17,10 +17,10 @@ export const CompDetails: preact.FunctionalComponent<Props> = ({ job }) => (
       <img src={chfSvg} />
       {job.salary || "-"}
     </div>
-    <div className="job-details__equity">
+    {job.equity && <div className="job-details__equity">
       <img src={equitySvg} />
       {job.equity}
-    </div>
+    </div>}
   </div>
 );
 
