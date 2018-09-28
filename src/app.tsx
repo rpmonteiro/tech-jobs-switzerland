@@ -5,6 +5,7 @@ import { About } from './routes/about';
 import { JobPage } from './routes/job';
 import { pushStateMonkeyPatch } from './utils/monkey-patch';
 import { NavBar } from './components/navbar';
+import { JobForm } from './routes/job-form';
 
 interface State {
   pathname: string;
@@ -37,9 +38,11 @@ export class App extends preact.Component<{}, State> {
       case pathname === '/about':
         page = <About />;
         break;
+      case pathname === '/post-a-job':
+        page = <JobForm />;
+        break;
       case /job\//.test(pathname):
         const match = pathname.match(/([^\/]+)$/);
-        console.log('inside job case', pathname, { match });
         page = match
           ? <JobPage id={match[1]} />
           : notFound;
