@@ -8,7 +8,7 @@
     "logo": "https://via.placeholder.com/60x60",
     "location": "Snowville",
     "type": "Part-time (80%)",
-    "salary": "100,000 - 130,000",
+    "salary": "100k - 130k",
     "equity": "0.1 - 0.4"
   },
   {
@@ -20,7 +20,7 @@
     "logo": "https://via.placeholder.com/60x60",
     "location": "Cassel",
     "type": "Full-time",
-    "salary": "80,000",
+    "salary": "80k",
     "equity": "0.05 - 0.1"
   },
   {
@@ -32,20 +32,20 @@
     "logo": "https://via.placeholder.com/60x60",
     "location": "Chaparrito",
     "type": "Contract",
-    "salary": "600 - 700",
+    "salary": "600 - 700 / day",
     "equity": null
   },
   {
     "id": "5b76f492e455820fd22b2447",
-    "title": "Frontend developer",
+    "title": "Junior developer",
     "teaser": "Build the next-gen health platform",
     "company": "Velity",
     "created": "2018-02-27T12:52:52",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Chicopee",
     "type": "fulltime",
-    "salary": 145576,
-    "equity": 8
+    "salary": "75k - 90k",
+    "equity": null
   },
   {
     "id": "5b76f49226af883e12e57b58",
