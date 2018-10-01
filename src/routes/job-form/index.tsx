@@ -1,19 +1,10 @@
 import * as preact from 'preact';
-import { getJob } from '../../api/job';
-import { emptyJob, Job } from '../../types';
-import { Button } from '../../components/button';
+import { ContractType } from '../../types';
 
 type SalaryType = 'simple' | 'range' | '';
 
-interface ClickEventTarget extends EventTarget {
-  value: string;
-}
-
-interface ClickEvent extends MouseEvent {
-  target: ClickEventTarget;
-}
-
 interface State {
+  contract: ContractType;
   salaryType: SalaryType;
   teaserCharsLeft: number;
 }
@@ -22,6 +13,7 @@ const TEASER_MAX_CHARS = 80;
 
 export class JobForm extends preact.Component<{}, State> {
   state = {
+    contract: 'full-time' as ContractType,
     salaryType: 'simple' as SalaryType,
     teaserCharsLeft: TEASER_MAX_CHARS
   };
@@ -48,12 +40,22 @@ export class JobForm extends preact.Component<{}, State> {
     });
   }
 
+  handleContractRadio = (event?: Event): void => {
+    if (!event) {
+      return;
+    }
+
+    this.setState({
+      contract: ((event.target as HTMLInputElement).value || '') as ContractType
+    });
+  }
+
   setTeaserRef = (el: HTMLTextAreaElement): void => {
     this.teaserRef = el;
   }
 
   render() {
-    const { teaserCharsLeft, salaryType } = this.state;
+    const { teaserCharsLeft, salaryType, contract } = this.state;
 
     const titleInput = (
       <div>
@@ -73,7 +75,7 @@ export class JobForm extends preact.Component<{}, State> {
       <div>
         <div class="form__input__label">Job teaser</div>
         <div class="form__input__description">
-          A brief description about the job/company mission.
+          A brief description about the job/company mission
         </div>
         <textarea
           maxLength={80}
@@ -87,11 +89,69 @@ export class JobForm extends preact.Component<{}, State> {
       </div>
     );
 
-    const jobTypeRadio = (
-      <input type="radio">
-        <option label="Full-Time" value="Full-time">Full-time</option>
-        <option>Part-time</option>
-      </input>
+    const contractRadio = (
+      <div>
+        <div class="form__input__label">Type of contract</div>
+        <div className="row">
+          <input
+            name="job-type-full"
+            type="radio"
+            value="full-time"
+            checked={contract === 'full-time'}
+            onChange={this.handleContractRadio}
+          />
+          <label for="job-type-full">Full-time</label>
+        </div>
+        <div class="row">
+          <input
+            name="job-type-part"
+            type="radio"
+            value="part-time"
+            checked={contract === 'part-time'}
+            onChange={this.handleContractRadio}
+          />
+          <label for="job-type-part">Part-time</label>
+          {contract === 'part-time' && (
+            <input
+              type="text"
+              maxLength={10}
+              placeholder="80%"
+              className="form__small-input"
+            />
+          )}
+        </div>
+        <div className="row">
+          <input
+            name="job-type-contract"
+            type="radio"
+            value="contractor"
+            checked={contract === 'contractor'}
+            onChange={this.handleContractRadio}
+          />
+          <label for="job-type-contract">Contractor</label>
+          {contract === 'contractor' && (
+            <div>
+              <input
+                name="contract-duration"
+                className="form__small-input"
+                type="text"
+                maxLength={5}
+                placeholder="6 months"
+              />
+            </div>
+          )}
+        </div>
+        <div className="row">
+          <input
+            name="job-type-internship"
+            type="radio"
+            value="internship"
+            checked={contract === 'internship'}
+            onChange={this.handleContractRadio}
+          />
+          <label for="job-type-internship">Internship</label>
+        </div>
+      </div>
     );
 
     const locationInput = (
@@ -101,13 +161,14 @@ export class JobForm extends preact.Component<{}, State> {
       </div>
     );
 
+    const isContractor = contract === 'contractor';
     const salaryInput = (
       <div>
-        <div class="form__input__label">Job title</div>
+        <div class="form__input__label">Salary (in CHF)</div>
         <div class="form__input__description">
-          Job posts that state the salary or a salary range get more candidates.
+          Job posts that state the salary or a salary range get more candidates
         </div>
-        <div class="form__salary__row">
+        <div class="row">
           <input
             name="salary-simple"
             type="radio"
@@ -115,16 +176,19 @@ export class JobForm extends preact.Component<{}, State> {
             checked={salaryType === 'simple'}
             onChange={this.handleSalaryRadio}
           />
-          <label for="salary-simple">Salary</label>
+          <label for="salary-simple">
+            {isContractor ? 'Daily rate' : 'Salary'}
+          </label>
           {salaryType === 'simple' && (
             <input
+              className="form__small-input"
               type="text"
               maxLength={5}
-              placeholder="80k"
+              placeholder={isContractor ? '750' : '80k'}
             />
           )}
         </div>
-        <div class="form__salary__row">
+        <div class="row">
           <input
             name="salary-range"
             type="radio"
@@ -132,24 +196,28 @@ export class JobForm extends preact.Component<{}, State> {
             checked={salaryType === 'range'}
             onChange={this.handleSalaryRadio}
           />
+          <label for="salary-range">
+            {isContractor ? 'Daily rate range' : 'Salary range'}
+          </label>
           {salaryType === 'range' && (
-            <div class="form__salary-range__row">
+            <div class="form__salary-range">
               <span>From</span>
               <input
                 type="text"
                 maxLength={5}
-                placeholder="80k"
+                placeholder={isContractor ? '750' : '80k'}
+                className="form__small-input"
               />
               <span>to</span>
               <input
                 type="text"
                 maxLength={5}
-                placeholder="100k"
+                placeholder={isContractor ? '1100' : '100k'}
+                className="form__small-input"
               />
             </div>
           )}
         </div>
-        <label for="salary-range">Salary range</label>
         <input
           name="salary-null"
           type="radio"
@@ -157,7 +225,9 @@ export class JobForm extends preact.Component<{}, State> {
           checked={!salaryType}
           onChange={this.handleSalaryRadio}
         />
-        <label for="salary-null">Don't display salary</label>
+        <label for="salary-null">
+          {`Don't display ${isContractor ? 'daily rate' : 'salary'}`}
+        </label>
       </div>
     );
 
@@ -167,7 +237,7 @@ export class JobForm extends preact.Component<{}, State> {
         {companyNameInput}
         {locationInput}
         {teaserInput}
-        {jobTypeRadio}
+        {contractRadio}
         {salaryInput}
       </div>
     );

@@ -3,7 +3,7 @@ import officeSvg from "../../icons/office.svg";
 import mapSvg from "../../icons/map.svg";
 import chfSvg from "../../icons/chf.svg";
 import equitySvg from "../../icons/equity.svg";
-import jobTypeSvg from "../../icons/jobType.svg";
+import contractSvg from "../../icons/contract.svg";
 import { Link } from "../link";
 import { Job } from "../../types";
 

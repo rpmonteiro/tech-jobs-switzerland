@@ -4,7 +4,7 @@ import officeSvg from '../../icons/office.svg';
 import mapSvg from '../../icons/map.svg';
 import chfSvg from '../../icons/chf.svg';
 import equitySvg from '../../icons/equity.svg';
-import jobTypeSvg from '../../icons/jobType.svg';
+import contractSvg from '../../icons/contract.svg';
 import { Link } from '../link';
 import { Job } from '../../types';
 import { CompanyDetails, CompDetails } from '../job-details';
@@ -19,10 +19,10 @@ export class JobCard extends preact.Component<Props> {
 
     const title = <div className="job-card__title">{job.title}</div>;
 
-    const jobType = (
+    const contract = (
       <div className="job-card__type">
-        <img src={jobTypeSvg} />
-        {job.type}
+        <img src={contractSvg} />
+        {job.contract}
       </div>
     );
 
@@ -41,7 +41,7 @@ export class JobCard extends preact.Component<Props> {
         {image}
         <div className="job-card__details">
           {title}
-          {jobType}
+          {contract}
           <CompanyDetails job={job} />
           {teaser}
           <CompDetails job={job} />

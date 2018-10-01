@@ -1,4 +1,4 @@
-type JobType = 'fulltime' | 'part-time' | 'contract' | 'internship';
+export type ContractType = 'full-time' | 'part-time' | 'contractor' | 'internship';
 
 export const emptyJob: Job = {
   id: '',
@@ -8,7 +8,7 @@ export const emptyJob: Job = {
   created: '',
   logo: '',
   location: '',
-  type: 'fulltime',
+  contract: 'full-time',
   email: '',
   description: ''
 };
@@ -22,7 +22,7 @@ export interface Job {
   created: string;
   logo: string;
   location: string;
-  type: JobType;
+  contract: ContractType;
   salary?: string;
   equity?: string;
   email?: string;

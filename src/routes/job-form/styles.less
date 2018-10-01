@@ -1,0 +1,24 @@
+.form {
+  &__salary-range {
+    * + * {
+      margin-left: @spacing-tiny;
+    }
+  }
+
+  &__small-input {
+    width: @input-small-width;
+  }
+
+  &__input {
+    &__label {
+      font-size: @font-size-smaller;
+      font-weight: 500;
+    }
+
+    &__description {
+      font-size: @font-size-smaller;
+      font-weight: 400;
+      font-style: italic;
+    }
+  }
+}
