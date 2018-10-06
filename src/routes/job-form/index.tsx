@@ -58,21 +58,21 @@ export class JobForm extends preact.Component<{}, State> {
     const { teaserCharsLeft, salaryType, contract } = this.state;
 
     const titleInput = (
-      <div>
+      <div class="form__section">
         <div class="form__input__label">Job title</div>
         <input class="form__input" type="text" />
       </div>
     );
 
     const companyNameInput = (
-      <div>
+      <div class="form__section">
         <div class="form__input__label">Company name</div>
         <input class="form__input" type="text" />
       </div>
     );
 
     const teaserInput = (
-      <div>
+      <div class="form__section">
         <div class="form__input__label">Job teaser</div>
         <div class="form__input__description">
           A brief description about the job/company mission
@@ -90,7 +90,7 @@ export class JobForm extends preact.Component<{}, State> {
     );
 
     const contractRadio = (
-      <div>
+      <div class="form__section">
         <div class="form__input__label">Type of contract</div>
         <div className="row">
           <input
@@ -135,7 +135,7 @@ export class JobForm extends preact.Component<{}, State> {
                 name="contract-duration"
                 className="form__small-input"
                 type="text"
-                maxLength={5}
+                maxLength={10}
                 placeholder="6 months"
               />
             </div>
@@ -155,7 +155,7 @@ export class JobForm extends preact.Component<{}, State> {
     );
 
     const locationInput = (
-      <div>
+      <div class="form__section">
         <div class="form__input__label">Office location</div>
         <input class="form__input" type="text" />
       </div>
@@ -163,7 +163,7 @@ export class JobForm extends preact.Component<{}, State> {
 
     const isContractor = contract === 'contractor';
     const salaryInput = (
-      <div>
+      <div class="form__section">
         <div class="form__input__label">Salary (in CHF)</div>
         <div class="form__input__description">
           Job posts that state the salary or a salary range get more candidates
@@ -201,7 +201,6 @@ export class JobForm extends preact.Component<{}, State> {
           </label>
           {salaryType === 'range' && (
             <div class="form__salary-range">
-              <span>From</span>
               <input
                 type="text"
                 maxLength={5}
@@ -218,16 +217,18 @@ export class JobForm extends preact.Component<{}, State> {
             </div>
           )}
         </div>
-        <input
-          name="salary-null"
-          type="radio"
-          value=""
-          checked={!salaryType}
-          onChange={this.handleSalaryRadio}
-        />
-        <label for="salary-null">
-          {`Don't display ${isContractor ? 'daily rate' : 'salary'}`}
-        </label>
+        <div class="row">
+          <input
+            name="salary-null"
+            type="radio"
+            value=""
+            checked={!salaryType}
+            onChange={this.handleSalaryRadio}
+          />
+          <label for="salary-null">
+            {`Don't display ${isContractor ? 'daily rate' : 'salary'}`}
+          </label>
+        </div>
       </div>
     );
 

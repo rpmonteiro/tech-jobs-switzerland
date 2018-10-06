@@ -30,9 +30,9 @@ export class JobPage extends preact.Component<Props, State> {
   render() {
     const { job, loading, error } = this.state;
 
-    if (loading) {
-      return <div>Loading...</div>;
-    }
+    // if (loading) {
+    //   return <div>Loading...</div>;
+    // }
 
     if (!job.id) {
       return null;

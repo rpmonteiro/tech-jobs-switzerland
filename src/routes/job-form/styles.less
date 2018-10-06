@@ -1,8 +1,25 @@
 .form {
-  &__salary-range {
-    * + * {
-      margin-left: @spacing-tiny;
+  label {
+    font-size: @font-size-copy;
+  }
+
+  textarea {
+    height: 50px;
+  }
+
+  &__section {
+    & + & {
+      margin-top: @spacing-standard;
     }
+
+    > textarea,
+    > input {
+      margin-top: 3px;
+    }
+  }
+
+  &__salary-range {
+    margin-left: @spacing-small;
   }
 
   &__small-input {
@@ -19,6 +36,20 @@
       font-size: @font-size-smaller;
       font-weight: 400;
       font-style: italic;
+    }
+  }
+
+  .row {
+    height: @input-small-height + @input-small-height * 0.1; 
+
+    input {
+      &:first-child {
+        margin-right: @spacing-small;
+      }
+
+      &:last-child {
+        margin-left: @spacing-small;
+      }
     }
   }
 }

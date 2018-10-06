@@ -1,6 +1,5 @@
 import * as preact from 'preact';
 import { App } from './app';
-import './styles.less';
 
 if (process.env.NODE_ENV === 'development') {
   require('preact/devtools');

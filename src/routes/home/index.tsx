@@ -25,9 +25,9 @@ export class Home extends preact.Component {
   render() {
     const { jobs, loading } = this.state;
 
-    if (loading) {
-      return <div>Loading...</div>;
-    }
+    // if (loading) {
+    //   return <div>Loading...</div>;
+    // }
 
     return (
       <div class="home-page">
