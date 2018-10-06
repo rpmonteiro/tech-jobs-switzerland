@@ -1,5 +1,8 @@
 import * as preact from 'preact';
 import { ContractType } from '../../types';
+import 'react-quill/dist/quill.snow.css';
+import { Rte } from '../../components/rte';
+import { Quill } from 'quill';
 
 type SalaryType = 'simple' | 'range' | '';
 
@@ -18,6 +21,7 @@ export class JobForm extends preact.Component<{}, State> {
     teaserCharsLeft: TEASER_MAX_CHARS
   };
 
+  descriptionRte: Quill;
   teaserRef: HTMLTextAreaElement | undefined;
 
   updateTeaserCharsLeft = (): void => {
@@ -54,6 +58,10 @@ export class JobForm extends preact.Component<{}, State> {
     this.teaserRef = el;
   }
 
+  setEditorRef = (editor: Quill): void => {
+    this.descriptionRte = editor;
+  }
+
   render() {
     const { teaserCharsLeft, salaryType, contract } = this.state;
 
@@ -83,7 +91,7 @@ export class JobForm extends preact.Component<{}, State> {
           class="form__input"
           onInput={this.updateTeaserCharsLeft}
         />
-        <div class="form__input__label">
+        <div class="form__input__chars-left">
           {`${teaserCharsLeft}/${TEASER_MAX_CHARS} characters left`}
         </div>
       </div>
@@ -232,12 +240,20 @@ export class JobForm extends preact.Component<{}, State> {
       </div>
     );
 
+    const descriptionRte = (
+      <div class="form__rte-container">
+        <div class="form__input__label">Job description</div>
+        <Rte setEditorRef={this.setEditorRef} />
+      </div>
+    );
+
     return (
       <div class="form">
         {titleInput}
         {companyNameInput}
         {locationInput}
         {teaserInput}
+        {descriptionRte}
         {contractRadio}
         {salaryInput}
       </div>

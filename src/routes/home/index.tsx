@@ -2,6 +2,7 @@ import * as preact from 'preact';
 import { Button } from '../../components/button';
 import { getJobs } from '../../api/job';
 import { JobList } from '../../components/job-list';
+import { Job } from '../../types';
 
 interface State {
   jobs: Job[];

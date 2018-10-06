@@ -7,6 +7,38 @@
     height: 50px;
   }
 
+  &__rte-container {
+    margin: @spacing-standard 0;
+
+    .ql-container,
+    .ql-toolbar {
+      box-shadow: 1px 1px 2px #ebebeb;
+    }
+
+    .ql-picker {
+      width: 90px !important;
+      font-size: @font-size-smaller !important;
+    }
+
+    .ql-container {
+      min-height: 150px;
+      max-height: 450px;
+      overflow-y: scroll;
+    }
+
+    .ql-toolbar {
+      margin-top: 3px;
+    }
+    .ql-formats {
+
+      margin-right: @spacing-tiny !important;
+
+      &:last-child {
+        margin: 0 !important;
+      }
+    }
+  }
+
   &__section {
     & + & {
       margin-top: @spacing-standard;
@@ -36,6 +68,10 @@
       font-size: @font-size-smaller;
       font-weight: 400;
       font-style: italic;
+    }
+
+    &__chars-left {
+      font-size: @font-size-smaller;
     }
   }
 
