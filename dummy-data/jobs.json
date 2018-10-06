@@ -7,7 +7,7 @@
     "created": "2018-02-17T09:37:23",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Snowville",
-    "type": "Part-time (80%)",
+    "contract": "Part-time (80%)",
     "salary": "100k - 130k",
     "equity": "0.1 - 0.4"
   },
@@ -19,7 +19,7 @@
     "created": "2018-02-26T05:25:24",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Cassel",
-    "type": "Full-time",
+    "contract": "Full-time",
     "salary": "80k",
     "equity": "0.05 - 0.1"
   },
@@ -31,7 +31,7 @@
     "created": "2018-04-24T12:32:30",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Chaparrito",
-    "type": "Contract",
+    "contract": "Contract",
     "salary": "600 - 700 / day",
     "equity": null
   },
@@ -43,7 +43,7 @@
     "created": "2018-02-27T12:52:52",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Chicopee",
-    "type": "fulltime",
+    "contract": "fulltime",
     "salary": "75k - 90k",
     "equity": null
   },
@@ -55,7 +55,7 @@
     "created": "2018-06-05T06:17:35",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Rosburg",
-    "type": "fulltime",
+    "contract": "fulltime",
     "salary": 145273,
     "equity": 3
   },
@@ -67,7 +67,7 @@
     "created": "2018-02-15T09:51:36",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Sunriver",
-    "type": "fulltime",
+    "contract": "fulltime",
     "salary": 64734,
     "equity": 0
   },
@@ -79,7 +79,7 @@
     "created": "2018-03-08T03:40:29",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Hailesboro",
-    "type": "fulltime",
+    "contract": "fulltime",
     "salary": 76688,
     "equity": 9
   },
@@ -91,7 +91,7 @@
     "created": "2018-08-11T12:56:21",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Allensworth",
-    "type": "parttime",
+    "contract": "parttime",
     "salary": 90658,
     "equity": 7
   },
@@ -103,7 +103,7 @@
     "created": "2018-04-17T11:42:24",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Dundee",
-    "type": "internship",
+    "contract": "internship",
     "salary": 62728,
     "equity": 12
   },
@@ -115,7 +115,7 @@
     "created": "2018-05-25T10:38:56",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Outlook",
-    "type": "fulltime",
+    "contract": "fulltime",
     "salary": 151323,
     "equity": 5
   },
@@ -127,7 +127,7 @@
     "created": "2018-01-03T06:23:29",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Ruckersville",
-    "type": "internship",
+    "contract": "internship",
     "salary": 75922,
     "equity": 5
   },
@@ -139,7 +139,7 @@
     "created": "2018-05-05T03:39:34",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Yettem",
-    "type": "fulltime",
+    "contract": "fulltime",
     "salary": 77087,
     "equity": 0
   },
@@ -151,7 +151,7 @@
     "created": "2018-06-17T01:51:43",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Loveland",
-    "type": "parttime",
+    "contract": "parttime",
     "salary": 170094,
     "equity": 14
   },
@@ -163,7 +163,7 @@
     "created": "2018-03-29T11:36:56",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Morningside",
-    "type": "fulltime",
+    "contract": "fulltime",
     "salary": 74559,
     "equity": 6
   },
@@ -175,7 +175,7 @@
     "created": "2018-01-14T10:07:31",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Staples",
-    "type": "fulltime",
+    "contract": "fulltime",
     "salary": 63053,
     "equity": 3
   },
@@ -187,7 +187,7 @@
     "created": "2018-03-24T08:03:44",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Nogal",
-    "type": "fulltime",
+    "contract": "fulltime",
     "salary": 98897,
     "equity": 13
   },
@@ -199,7 +199,7 @@
     "created": "2018-02-10T11:07:16",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Healy",
-    "type": "fulltime",
+    "contract": "fulltime",
     "salary": 83616,
     "equity": 5
   },
@@ -211,7 +211,7 @@
     "created": "2018-06-05T11:21:28",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Wakarusa",
-    "type": "fulltime",
+    "contract": "fulltime",
     "salary": 128740,
     "equity": 3
   },
@@ -223,7 +223,7 @@
     "created": "2018-05-02T07:48:13",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Warren",
-    "type": "contract",
+    "contract": "contract",
     "salary": 112251,
     "equity": 5
   },
@@ -235,7 +235,7 @@
     "created": "2018-06-11T12:30:01",
     "logo": "https://via.placeholder.com/60x60",
     "location": "Norris",
-    "type": "fulltime",
+    "contract": "fulltime",
     "salary": 55935,
     "equity": 11
   }
