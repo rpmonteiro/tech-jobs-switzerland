@@ -23,6 +23,7 @@ interface State {
 
 const TEASER_MAX_CHARS = 80;
 
+// tslint:disable-next-line:max-line-length
 export class JobForm extends preact.Component<{}, State> {
   state = {
     salary: '',
