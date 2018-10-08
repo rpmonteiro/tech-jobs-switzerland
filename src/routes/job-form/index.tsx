@@ -1,8 +1,6 @@
 import * as preact from 'preact';
 import { ContractType } from '../../types';
-import 'react-quill/dist/quill.snow.css';
 import { Rte } from '../../components/rte';
-import { Quill } from 'quill';
 
 type RangeType = 'simple' | 'range' | '';
 

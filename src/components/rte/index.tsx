@@ -1,5 +1,6 @@
 import * as preact from 'preact';
 import Quill from 'quill';
+import 'quill/dist/quill.snow.css';
 
 interface Props {
   setEditorRef: (el: Quill) => void;

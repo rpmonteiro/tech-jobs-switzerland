@@ -8,38 +8,21 @@
     "test": "",
     "build": "cross-env NODE_ENV=production parcel build --experimental-scope-hoisting src/index.html --public-url .",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
-    "storybook": "start-storybook -p 6060 -c storybook -s src"
+    "deploy": "gh-pages -d dist"
   },
   "author": "Ricardo Monteiro & Samantha Parkyn",
   "license": "MIT",
   "devDependencies": {
-    "@storybook/addon-actions": "v4.0.0-alpha.16",
-    "@storybook/addon-info": "v4.0.0-alpha.16",
-    "@storybook/addon-knobs": "v4.0.0-alpha.16",
-    "@storybook/addon-viewport": "v4.0.0-alpha.16",
-    "@storybook/react": "v4.0.0-alpha.16",
     "@types/classnames": "^2.2.6",
     "@types/parcel-env": "^0.0.0",
     "@types/quill": "^2.0.0",
-    "@types/storybook__addon-actions": "^3.0.3",
-    "@types/storybook__addon-info": "^3.2.3",
-    "@types/storybook__addon-knobs": "^3.3.1",
-    "@types/storybook__react": "^3.0.8",
-    "awesome-typescript-loader": "^5.2.0",
     "babel-core": "^6.26.3",
     "babel-plugin-transform-runtime": "^6.23.0",
     "cross-env": "5.2.0",
-    "css-loader": "^1.0.0",
     "gh-pages": "1.2.0",
     "less": "^3.8.1",
-    "less-loader": "^4.1.0",
-    "moment": "^2.22.2",
-    "parcel-bundler": "1.9.7",
+    "parcel-bundler": "1.10.2",
     "parcel-plugin-bundle-visualiser": "^1.1.2",
-    "react-docgen-typescript-loader": "^2.2.0",
-    "storybook-addon-jsx": "^5.4.0",
-    "style-loader": "^0.22.1",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.10.0",
     "typescript": "3.1.1"
@@ -47,7 +30,6 @@
   "dependencies": {
     "classnames": "2.2.6",
     "preact": "8.3.1",
-    "quill": "1.3.6",
-    "react-quill": "1.3.1"
+    "quill": "1.3.6"
   }
 }
