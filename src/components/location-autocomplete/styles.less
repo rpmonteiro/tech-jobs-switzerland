@@ -1,0 +1,67 @@
+.loc-autocomplete {
+  position: relative;
+
+  input {
+    width: 100%;
+  }
+
+  &__loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+
+  &__no-results-found {
+    font-size: @font-size-smaller;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+
+  &__predictions {
+    &__container {
+      box-shadow: @shadow-alt;
+      z-index: 1;
+      background: @color-white;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      min-height: @input-small-height;
+      display: flex;
+      flex-direction: column;
+
+      &-loading {
+        left: 0;
+        right: 0;
+        width: unset;
+      }
+    }
+
+    &__row {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      height: @input-small-height;
+      padding: @spacing-tiny @spacing-small;
+      transition: background 100ms ease-out;
+
+      &-active {
+        background: fade(@color-primary, 20%);
+      }
+
+      span {
+        font-size: @font-size-smaller;
+
+        &:first-child {
+          font-weight: 500;
+        }
+      }
+
+      & + & {
+        border-top: 1px solid @color-light-gray;
+      }
+    }
+  }
+}

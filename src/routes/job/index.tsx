@@ -1,17 +1,17 @@
-import * as preact from 'preact';
-import { getJob } from '../../api/job';
-import { emptyJob, Job } from '../../types';
-import { CompDetails, CompanyDetails } from '../../components/job-details';
-import { Button } from '../../components/button';
+import * as preact from 'preact'
+import { getJob } from '../../api/job'
+import { emptyJob, Job } from '../../types'
+import { CompDetails, CompanyDetails } from '../../components/job-details'
+import { Button } from '../../components/button'
 
 interface State {
-  job: Job;
-  error: string;
-  loading: boolean;
+  job: Job
+  error: string
+  loading: boolean
 }
 
 interface Props {
-  id: string;
+  id: string
 }
 
 export class JobPage extends preact.Component<Props, State> {
@@ -19,23 +19,23 @@ export class JobPage extends preact.Component<Props, State> {
     job: emptyJob,
     error: '',
     loading: true
-  };
+  }
 
   componentDidMount() {
     getJob(this.props.id)
-      .then(job => this.setState({ job, loading: false }))
-      .catch((err: Error) => this.setState({ error: err.message, loading: false }));
+      .then(res => this.setState({ job: res.data, loading: false }))
+      .catch((err: Error) => this.setState({ error: err.message, loading: false }))
   }
 
   render() {
-    const { job, loading, error } = this.state;
+    const { job, loading, error } = this.state
 
     // if (loading) {
     //   return <div>Loading...</div>;
     // }
 
     if (!job.id) {
-      return null;
+      return null
     }
 
     const jobHeader = (
@@ -47,20 +47,20 @@ export class JobPage extends preact.Component<Props, State> {
           <CompDetails job={job} />
         </div>
       </div>
-    );
+    )
 
     const jobDescription = (
       <div className="job-page__description">
         <h3>Job description</h3>
         <div dangerouslySetInnerHTML={{ __html: job.description }} />
       </div>
-    );
+    )
 
     const applyButton = (
       <div className="job-page__button-container">
         <Button color="red" text="Apply for this job" to={job.link} />
       </div>
-    );
+    )
 
     return (
       <div class="job-page">
@@ -68,6 +68,6 @@ export class JobPage extends preact.Component<Props, State> {
         {jobDescription}
         {applyButton}
       </div>
-    );
+    )
   }
 }

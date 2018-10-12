@@ -1,25 +1,27 @@
-import * as preact from 'preact';
-import { ContractType } from '../../types';
-import { Rte } from '../../components/rte';
+import * as preact from 'preact'
+import { ContractType, Coords } from '../../types'
+import { Rte } from '../../components/rte'
+import { Quill } from 'quill'
+import { LocationAutocomplete } from '../../components/location-autocomplete'
 
-type RangeType = 'simple' | 'range' | '';
+type RangeType = 'simple' | 'range' | ''
 
 interface State {
-  contractType: ContractType;
-  salaryType: RangeType;
-  equityType: RangeType;
-  contractDuration: string;
-  contractPercentage: string;
-  teaserCharsLeft: number;
-  salary: string;
-  salaryRangeFrom: string;
-  salaryRangeTo: string;
-  equity: string;
-  equityRangeFrom: string;
-  equityRangeTo: string;
+  contractType: ContractType
+  salaryType: RangeType
+  equityType: RangeType
+  contractDuration: string
+  contractPercentage: string
+  teaserCharsLeft: number
+  salary: string
+  salaryRangeFrom: string
+  salaryRangeTo: string
+  equity: string
+  equityRangeFrom: string
+  equityRangeTo: string
 }
 
-const TEASER_MAX_CHARS = 80;
+const TEASER_MAX_CHARS = 80
 
 // tslint:disable-next-line:max-line-length
 export class JobForm extends preact.Component<{}, State> {
@@ -36,39 +38,39 @@ export class JobForm extends preact.Component<{}, State> {
     contractPercentage: '',
     contractType: 'full-time' as ContractType,
     teaserCharsLeft: TEASER_MAX_CHARS
-  };
+  }
 
-  descriptionRteSection: Quill;
-  teaserRef: HTMLTextAreaElement | undefined;
+  descriptionRteSection: Quill
+  teaserRef: HTMLTextAreaElement | undefined
 
   updateTeaserCharsLeft = (): void => {
     if (!this.teaserRef) {
-      return;
+      return
     }
 
     this.setState({
       teaserCharsLeft: TEASER_MAX_CHARS - this.teaserRef.value.length
-    });
+    })
   }
 
   handleInputChange = (stateKey: keyof State) => {
-    return (event?: Event): void => {
-      if (!event) {
-        return;
-      }
+    return (event: Event): void => {
+      const value = (event.target as HTMLInputElement).value || ''
 
-      const value = (event.target as HTMLInputElement).value || '';
-
-      this.setState(() => ({ [stateKey]: value }));
-    };
+      this.setState(() => ({ [stateKey]: value }))
+    }
   }
 
   setTeaserRef = (el: HTMLTextAreaElement): void => {
-    this.teaserRef = el;
+    this.teaserRef = el
+  }
+
+  handleLocationSelect = (address: string, coords: Coords | undefined) => {
+    console.log({ address, coords })
   }
 
   setEditorRef = (editor: Quill): void => {
-    this.descriptionRteSection = editor;
+    this.descriptionRteSection = editor
   }
 
   render() {
@@ -83,21 +85,21 @@ export class JobForm extends preact.Component<{}, State> {
       equityRangeTo,
       contractDuration,
       contractPercentage
-    } = this.state;
+    } = this.state
 
     const titleSection = (
       <div class="form__section">
         <div class="form__input__label">Job title</div>
         <input class="form__input" type="text" />
       </div>
-    );
+    )
 
     const companyNameSection = (
       <div class="form__section">
         <div class="form__input__label">Company name</div>
         <input class="form__input" type="text" />
       </div>
-    );
+    )
 
     const teaserSection = (
       <div class="form__section">
@@ -115,7 +117,7 @@ export class JobForm extends preact.Component<{}, State> {
           {`${teaserCharsLeft}/${TEASER_MAX_CHARS} characters left`}
         </div>
       </div>
-    );
+    )
 
     const contractSection = (
       <div class="form__section">
@@ -184,16 +186,16 @@ export class JobForm extends preact.Component<{}, State> {
           <label for="job-type-internship">Internship</label>
         </div>
       </div>
-    );
+    )
 
     const locationSection = (
       <div class="form__section">
         <div class="form__input__label">Office location</div>
-        <input class="form__input" type="text" />
+        <LocationAutocomplete inputName="location" onSelect={this.handleLocationSelect} />
       </div>
-    );
+    )
 
-    const isContractor = contractType === 'contractor';
+    const isContractor = contractType === 'contractor'
     const salarySection = (
       <div class="form__section">
         <div class="form__input__label">Salary (in CHF)</div>
@@ -208,9 +210,7 @@ export class JobForm extends preact.Component<{}, State> {
             checked={salaryType === 'simple'}
             onChange={this.handleInputChange('salaryType')}
           />
-          <label for="salary-simple">
-            {isContractor ? 'Daily rate' : 'Salary'}
-          </label>
+          <label for="salary-simple">{isContractor ? 'Daily rate' : 'Salary'}</label>
           {salaryType === 'simple' && (
             <input
               className="form__small-input"
@@ -229,9 +229,7 @@ export class JobForm extends preact.Component<{}, State> {
             checked={salaryType === 'range'}
             onChange={this.handleInputChange('salaryType')}
           />
-          <label for="salary-range">
-            {isContractor ? 'Daily rate range' : 'Salary range'}
-          </label>
+          <label for="salary-range">{isContractor ? 'Daily rate range' : 'Salary range'}</label>
           {salaryType === 'range' && (
             <div class="form__input__range">
               <input
@@ -267,7 +265,7 @@ export class JobForm extends preact.Component<{}, State> {
           </label>
         </div>
       </div>
-    );
+    )
 
     const equitySection = !isContractor && (
       <div class="form__section">
@@ -282,12 +280,7 @@ export class JobForm extends preact.Component<{}, State> {
           />
           <label for="equity-simple">{'Equity'}</label>
           {equityType === 'simple' && (
-            <input
-              className="form__small-input"
-              type="text"
-              maxLength={5}
-              placeholder={'0.5'}
-            />
+            <input className="form__small-input" type="text" maxLength={5} placeholder={'0.5'} />
           )}
         </div>
         <div class="row">
@@ -332,14 +325,14 @@ export class JobForm extends preact.Component<{}, State> {
           <label for="equity-null">{'No equity'}</label>
         </div>
       </div>
-    );
+    )
 
     const descriptionRteSection = (
       <div class="form__rte-container">
         <div class="form__input__label">Job description</div>
         <Rte setEditorRef={this.setEditorRef} />
       </div>
-    );
+    )
 
     return (
       <div class="form">
@@ -352,6 +345,6 @@ export class JobForm extends preact.Component<{}, State> {
         {salarySection}
         {equitySection}
       </div>
-    );
+    )
   }
 }

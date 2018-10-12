@@ -1,42 +1,26 @@
-import { config } from '../config';
-import { Job, ApiResponse, Omit } from '../types';
+import { config } from '../config'
+import { Job, Omit, ApiResponse } from '../types'
+import { fetch } from './fetch'
 
-export function getJob(id: string): Promise<Job> {
-  const url = `${config.API_HOST}/job/${id}`;
-  return fetch<Job>(url);
+export function getJob(id: string): Promise<ApiResponse<Job>> {
+  const url = `${config.API_HOST}/job/${id}`
+  return fetch<ApiResponse<Job>>(url)
 }
 
-export function getJobs(): Promise<Job[]> {
-  const url = `${config.API_HOST}/jobs`;
-  return fetch<Job[]>(url);
+export function getJobs(): Promise<ApiResponse<Job[]>> {
+  const url = `${config.API_HOST}/jobs`
+  return fetch<ApiResponse<Job[]>>(url)
 }
 
-export function postJob(newJob: Omit<Job, 'id'>): Promise<Job> {
-  const url = `${config.API_HOST}/job`;
+export function postJob(newJob: Omit<Job, 'id'>): Promise<ApiResponse<Job>> {
+  const url = `${config.API_HOST}/job`
   const options = {
     body: JSON.stringify(newJob),
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json; charset=utf-8',
+      'Content-Type': 'application/json; charset=utf-8'
     }
-  };
+  }
 
-  return fetch<Job>(url, options);
-}
-
-export function fetch<T>(url: string, opts?: RequestInit): Promise<T> {
-  return window.fetch(url, opts)
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error(res.statusText);
-      }
-
-      return res.json() as Promise<ApiResponse<T>>;
-    })
-    .then(data => data.data)
-    .catch((error: Error) => {
-      // some service to catch errors (sentry, rollbar, etc.) is called here -> service(error)
-      // re-throw the error so the client can catch it
-      throw error;
-    });
+  return fetch<ApiResponse<Job>>(url, options)
 }
