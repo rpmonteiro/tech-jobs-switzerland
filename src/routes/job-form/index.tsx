@@ -3,10 +3,14 @@ import { ContractType, Coords } from '../../types'
 import { Rte } from '../../components/rte'
 import { Quill } from 'quill'
 import { LocationAutocomplete } from '../../components/location-autocomplete'
+import { Button } from '../../components/button'
+import { validateJob } from '../../api/job'
 
 type RangeType = 'simple' | 'range' | ''
 
 interface State {
+  validating: boolean
+  coords: Coords | null
   contractType: ContractType
   salaryType: RangeType
   equityType: RangeType
@@ -19,6 +23,7 @@ interface State {
   equity: string
   equityRangeFrom: string
   equityRangeTo: string
+  address: string
 }
 
 const TEASER_MAX_CHARS = 80
@@ -26,6 +31,9 @@ const TEASER_MAX_CHARS = 80
 // tslint:disable-next-line:max-line-length
 export class JobForm extends preact.Component<{}, State> {
   state = {
+    validating: false,
+    coords: null,
+    address: '',
     salary: '',
     salaryRangeFrom: '',
     salaryRangeTo: '',
@@ -65,16 +73,37 @@ export class JobForm extends preact.Component<{}, State> {
     this.teaserRef = el
   }
 
-  handleLocationSelect = (address: string, coords: Coords | undefined) => {
-    console.log({ address, coords })
+  handleLocationSelect = (address: string) => {
+    this.setState({ address })
+  }
+
+  handleLocationCoords = (coords: Coords) => {
+    this.setState({ coords })
   }
 
   setEditorRef = (editor: Quill): void => {
     this.descriptionRteSection = editor
   }
 
+  submitHandler = (): void => {
+    const job = {}
+    validateJob(job)
+      .then(res => {
+        if (res.data.valid) {
+          console.log('isValid')
+          return
+        }
+        throw new Error(res.data.message)
+      })
+      .catch((err: Error) => {
+        console.log('err', err)
+      })
+  }
+
   render() {
     const {
+      address,
+      validating,
       teaserCharsLeft,
       salaryType,
       contractType,
@@ -191,7 +220,12 @@ export class JobForm extends preact.Component<{}, State> {
     const locationSection = (
       <div class="form__section">
         <div class="form__input__label">Office location</div>
-        <LocationAutocomplete inputName="location" onSelect={this.handleLocationSelect} />
+        <LocationAutocomplete
+          inputName="location"
+          initialValue={address}
+          onCoordsResolve={this.handleLocationCoords}
+          onSelect={this.handleLocationSelect}
+        />
       </div>
     )
 
@@ -334,6 +368,12 @@ export class JobForm extends preact.Component<{}, State> {
       </div>
     )
 
+    const submitButton = (
+      <div class="form__submit-button">
+        <Button text="Next" onClick={this.submitHandler} loading={validating} />
+      </div>
+    )
+
     return (
       <div class="form">
         {titleSection}
@@ -344,6 +384,7 @@ export class JobForm extends preact.Component<{}, State> {
         {contractSection}
         {salarySection}
         {equitySection}
+        {submitButton}
       </div>
     )
   }

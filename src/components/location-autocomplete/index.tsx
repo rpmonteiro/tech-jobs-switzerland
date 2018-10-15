@@ -7,9 +7,9 @@ import { debounceService } from '../../utils/debounce'
 import classNames from 'classnames'
 
 interface Props {
-  query?: string
   inputName: string
   label?: string
+  initialValue?: string
   onCoordsResolve: (coords: Coords) => void
   onSelect: (address: string) => void
 }
@@ -21,6 +21,7 @@ interface State {
   pristine: boolean
   activePredictionIdx: number
   showPredictions: boolean
+  initialValue?: string
   predictions: GooglePlacesAutocompletePrediction[]
 }
 
@@ -30,8 +31,8 @@ export class LocationAutocomplete extends preact.Component<Props, State> {
     loading: false,
     pristine: true,
     activePredictionIdx: -1,
-    showPredictions: true,
-    query: this.props.query || '',
+    showPredictions: false,
+    query: this.props.initialValue || '',
     predictions: [] as GooglePlacesAutocompletePrediction[]
   }
 

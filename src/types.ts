@@ -10,12 +10,14 @@ export const emptyJob: Job = {
   location: '',
   contract: 'full-time',
   email: '',
+  coords: null,
   description: ''
 }
 
 export interface Job {
   id: string
   title: string
+  coords: Coords | null
   description: string
   teaser: string
   company: string
@@ -61,6 +63,11 @@ export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 
 export interface ApiResponse<T> {
   data: T
+  message?: string
+}
+
+export interface ValidateJobResponse {
+  valid: boolean
   message?: string
 }
 
