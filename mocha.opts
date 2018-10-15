@@ -1,0 +1,4 @@
+--require ts-node/register
+--require expect
+--reporter dot
+src/**/__tests__/*.ts

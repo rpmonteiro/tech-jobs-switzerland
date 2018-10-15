@@ -1,5 +1,5 @@
-import { BaseContext } from "koa";
-const jobDummyData = require("../../dummy-data/job.json");
+import { BaseContext } from 'koa'
+const jobDummyData = require('../../dummy-data/job.json')
 
 export async function getJob(ctx: BaseContext) {
   // const id = ctx.query.id;
@@ -12,5 +12,10 @@ export async function getJob(ctx: BaseContext) {
 
   ctx.body = {
     data: jobDummyData
-  };
+  }
+}
+
+export async function validateJob(ctx: BaseContext) {
+  // const job: Partial<Job> = ctx.body
+  const job = ctx.body
 }
