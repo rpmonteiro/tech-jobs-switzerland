@@ -17,5 +17,5 @@ export async function getJob(ctx: BaseContext) {
 
 export async function validateJob(ctx: BaseContext) {
   // const job: Partial<Job> = ctx.body
-  const job = ctx.body
+  // const job = ctx.body
 }

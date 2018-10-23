@@ -4,6 +4,7 @@
     "no-increment-decrement": false,
     "trailing-comma": false,
     "variable-name": false,
-    "align": false
+    "align": false,
+    "no-inferrable-types": true
   }
 }
