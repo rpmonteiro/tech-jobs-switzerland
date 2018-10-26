@@ -8,6 +8,10 @@ export const emptyJob: Job = {
   created: '',
   logo: '',
   location: '',
+  salary: '',
+  equity: '',
+  contractDuration: '',
+  contractPercentage: '',
   contract: 'full-time',
   email: '',
   coords: null,
@@ -25,6 +29,8 @@ export interface Job {
   logo: string
   location: string
   contract: ContractType
+  contractDuration: ''
+  contractPercentage: ''
   salary?: string
   equity?: string
   email?: string

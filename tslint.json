@@ -7,6 +7,7 @@
     "variable-name": false,
     "align": false,
     "import-name": false,
-    "ter-arrow-parens": false
+    "ter-arrow-parens": false,
+    "no-inferrable-types": true
   }
 }
