@@ -5,6 +5,7 @@
     "trailing-comma": false,
     "variable-name": false,
     "align": false,
-    "no-inferrable-types": true
+    "no-inferrable-types": true,
+    "semicolon": false
   }
 }
