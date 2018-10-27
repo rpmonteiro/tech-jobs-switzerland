@@ -6,6 +6,7 @@
     "variable-name": false,
     "align": false,
     "no-inferrable-types": true,
-    "semicolon": false
+    "semicolon": false,
+    "import-name": false
   }
 }
