@@ -24,7 +24,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
-                sh 'tsc'
+                sh 'npm run build'
             }
         }
     }
