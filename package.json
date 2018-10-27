@@ -4,7 +4,7 @@
   "description": "Backend for all the jobs websites",
   "main": "index.ts",
   "scripts": {
-    "start": "num run dev",
+    "start": "npm run dev",
     "compile": "tsc && node dist",
     "dev": "./node_modules/nodemon/bin/nodemon.js -e ts --exec \"npm run compile\"",
     "test": "mocha --opts mocha.opts",
