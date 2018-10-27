@@ -7,7 +7,7 @@ describe('job validations', () => {
       await jobSchema.validate({})
     } catch (error) {
       const err = error
-      expect(err).toEqual('[ValidationError: child "title" fails because ["title" is required]]​​')
+      expect(err.details[0].message).toEqual('"title" is required')
     }
   })
 })
