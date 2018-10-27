@@ -4,7 +4,9 @@
   "description": "Backend for all the jobs websites",
   "main": "index.ts",
   "scripts": {
-    "compile": "tsc && node dist",
+    "start": "node dist",
+    "build": "tsc",
+    "postinstall": "npm run build",
     "dev": "./node_modules/nodemon/bin/nodemon.js -e ts --exec \"npm run compile\"",
     "test": "mocha --opts mocha.opts",
     "db-migrate": "node node_modules/db-migrate/bin/db-migrate --config configs/database.json"
