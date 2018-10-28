@@ -9,7 +9,8 @@
     "build": "tsc",
     "dev": "./node_modules/nodemon/bin/nodemon.js -e ts --exec \"npm run compile\"",
     "test": "mocha --opts mocha.opts",
-    "db-migrate": "node node_modules/db-migrate/bin/db-migrate --config configs/database.json"
+    "db:create": "createdb -h localhost -p 5432 -U postgres --no-password jobs",
+    "db:migrate": "node node_modules/db-migrate/bin/db-migrate --config configs/database.json"
   },
   "repository": {
     "type": "git",

@@ -1,9 +1,9 @@
 #!/bin/sh
-yarn build
-yarn run db-migrate up
+npm run build
+npm run db:migrate up
 
 if [ "$NODE_ENV" == "production" ] ; then
-  yarn start
+  npm run start
 else
-  yarn dev
+  npm run dev
 fi
