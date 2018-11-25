@@ -10,7 +10,7 @@
     "dev": "./node_modules/nodemon/bin/nodemon.js -e ts --exec \"npm run compile\"",
     "test": "mocha --opts mocha.opts",
     "db:create": "createdb -h localhost -p 5432 -U postgres --no-password jobs",
-    "db:migrate": "node node_modules/db-migrate/bin/db-migrate --config configs/database.json"
+    "db:migrate": "DATABASE_URL=postgres:@localhost/jobs node node_modules/db-migrate/bin/db-migrate up"
   },
   "repository": {
     "type": "git",
@@ -44,7 +44,6 @@
     "@types/massive": "^4.6.1",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.9.2",
-    "@types/winston": "^2.3.9",
     "concurrently": "^4.0.0",
     "db-migrate": "^0.11.1",
     "db-migrate-pg": "^0.4.0",
