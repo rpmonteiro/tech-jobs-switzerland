@@ -1,6 +1,19 @@
 import dotenv from 'dotenv'
+import parseDbUrl from 'parse-database-url'
 
 dotenv.config({ path: '.env' })
+
+interface DBConfig {
+  user: string
+  host: string
+  port: string
+  database: string
+  password: string
+}
+
+const dbConfig: DBConfig = parseDbUrl(process.env['DATABASE_URL'])
+
+console.log({ dbConfig })
 
 export interface AppConfig {
   port: number
@@ -12,14 +25,12 @@ export interface AppConfig {
   debugLogging: boolean
 }
 
-const config: AppConfig = {
+export const config: AppConfig = {
   port: process.env.PORT ? parseInt(process.env.PORT, 10) : 3000,
-  dbName: process.env.DB_NAME || 'jobs',
-  dbHost: process.env.DB_HOST || 'localhost',
-  dbPort: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 5432,
-  dbUser: process.env.DB_USER || 'postgres',
-  dbPassword: process.env.DB_PASSWORD || '',
+  dbName: dbConfig.database,
+  dbHost: dbConfig.host,
+  dbPort: parseInt(dbConfig.port, 10),
+  dbUser: dbConfig.user,
+  dbPassword: dbConfig.password,
   debugLogging: process.env.NODE_ENV === 'development'
 }
-
-export { config }

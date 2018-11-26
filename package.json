@@ -6,11 +6,10 @@
   "scripts": {
     "start": "npm run dev",
     "compile": "tsc && node dist",
-    "build": "tsc",
     "dev": "./node_modules/nodemon/bin/nodemon.js -e ts --exec \"npm run compile\"",
     "test": "mocha --opts mocha.opts",
-    "db:create": "createdb -h localhost -p 5432 -U postgres --no-password jobs",
-    "db:migrate": "DATABASE_URL=postgres:@localhost/jobs node node_modules/db-migrate/bin/db-migrate up"
+    "db:create": "createdb",
+    "db:migrate": "node node_modules/db-migrate/bin/db-migrate up"
   },
   "repository": {
     "type": "git",
@@ -30,6 +29,7 @@
     "koa-router": "^7.4.0",
     "massive": "^5.2.0",
     "mocha": "^5.2.0",
+    "parse-database-url": "^0.3.0",
     "winston": "^3.0.0"
   },
   "devDependencies": {

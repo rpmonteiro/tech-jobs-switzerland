@@ -2845,7 +2845,7 @@ packet-reader@0.3.1:
   resolved "https://registry.yarnpkg.com/packet-reader/-/packet-reader-0.3.1.tgz#cd62e60af8d7fea8a705ec4ff990871c46871f27"
   integrity sha1-zWLmCvjX/qinBexP+ZCHHEaHHyc=
 
-parse-database-url@~0.3.0:
+parse-database-url@^0.3.0, parse-database-url@~0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/parse-database-url/-/parse-database-url-0.3.0.tgz#369666321e927c9ade63cdfc1aaaf6fb37453d0d"
   integrity sha1-NpZmMh6SfJreY838Gqr2+zdFPQ0=
