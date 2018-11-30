@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 # separate from the application code to better use docker's caching
 # `npm install` will be cached on future builds if only the app code changed
 COPY package*.json ./
-RUN echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \ && yarn
+RUN echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
 # copy the app
 COPY . .
