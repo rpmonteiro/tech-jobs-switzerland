@@ -114,19 +114,19 @@ pipeline {
       steps {
         sh 'docker build -t jobs-backend:latest .'
         sh 'docker-compose build'
-        sh 'docker-compose run web npm install'
-        sh 'docker-compose run -e NODE_ENV=test --rm web npm run db:create && npm run db:migrate up'
+        sh 'docker-compose run web yarn'
+        sh 'docker-compose run -e NODE_ENV=test --rm web db:migrate'
       }
     }
     stage('Tests') {
       steps {
         parallel(
           "Unit Tests": {
-            sh 'docker-compose run --name unit --rm web npm run test'
+            sh 'docker-compose run --name unit --rm web yarn test'
             
           },
           "Feature tests": {
-            sh 'docker-compose run --name feature --rm web npm run test'
+            sh 'docker-compose run --name feature --rm web yarn test'
           }
         )
       }
