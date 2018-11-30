@@ -112,7 +112,6 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t jobs-backend:latest .'
         sh 'docker-compose build'
         sh 'docker-compose run web yarn'
         sh 'docker-compose run -e NODE_ENV=test --rm web db:migrate'
