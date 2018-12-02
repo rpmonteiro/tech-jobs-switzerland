@@ -49,7 +49,7 @@
 //                     steps {
 //                         sh 'docker login --username $DOCKER_USR --password $DOCKER_PSW'
 //                         sh 'docker tag jobs-backend-dev:trunk <DockerHub Username>/jobs-backend-dev:latest'
-//                         sh 'docker push <DockerHub Username>/jobs-backend-dev:latest'
+  //                         sh 'docker push <DockerHub Username>/jobs-backend-dev:latest'
 //                     }
 //                 }
 //             }
@@ -106,15 +106,18 @@
 //     }
 // }
 
+// 
+
 
 pipeline {
   agent any
   stages {
     stage('Build') {
       steps {
+        sh 'docker build -t jobs-backend:latest .'
         sh 'docker-compose build'
         sh 'docker-compose run web yarn'
-        sh 'docker-compose run -e NODE_ENV=test --rm web db:migrate'
+        sh 'docker-compose run -e NODE_ENV=test --rm web yarn db:migrate'
       }
     }
     stage('Tests') {
@@ -122,12 +125,23 @@ pipeline {
         parallel(
           "Unit Tests": {
             sh 'docker-compose run --name unit --rm web yarn test'
-            
           },
-          "Feature tests": {
-            sh 'docker-compose run --name feature --rm web yarn test'
-          }
+          // for when I have feature tests...
+          // "Feature tests": {
+          //   sh 'docker-compose run --name feature --rm web yarn test'
+          // }
         )
+        post {
+          success {
+              echo 'Build succeeded.'
+          }
+          unstable {
+              echo 'This build returned an unstable status.'
+          }
+          failure {
+              echo 'This build has failed. See logs for details.'
+          }
+        }
       }
     }
 
@@ -136,7 +150,9 @@ pipeline {
         expression { env.BRANCH_NAME == 'master' }
       }
       steps {
-        echo 'todo: deploy to staging'
+        sh 'docker tag jobs-backend:latest eu.gcr.io/jobs-backend-224200/jobs-backend:latest-staging'
+        sh 'docker push eu.gcr.io/jobs-backend-224200/jobs-backend:latest-staging'
+        sh './scripts/deploy-to-staging'
       }
     }
 
