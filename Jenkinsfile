@@ -121,8 +121,8 @@ pipeline {
       }
     }
     stage('Tests') {
-      steps {
-        parallel(
+      parallel(
+        steps {
           "Unit Tests": {
             sh 'docker-compose run --name unit --rm web yarn test'
           },
