@@ -112,7 +112,7 @@
 pipeline {
   agent any
   stages {
-    
+
     stage('Build') {
       steps {
         sh 'docker build -t jobs-backend:latest .'
@@ -122,27 +122,27 @@ pipeline {
       }
     }
 
+
     stage('Tests') {
-      parallel {
-        steps {
+      steps {
+        parallel(
           "Unit Tests": {
-            sh 'docker run --rm --name unit --rm -c "yarn test"'
-          },
-          // for when I have feature tests...
+            sh 'docker run --rm --name unit --rm -c "yarn test"' 
+          }
           // "Feature tests": {
-          //   sh 'docker-compose run --name feature --rm web yarn integration'
+          //   sh 'docker-compose run --name feature --rm web rspec spec/features/'
           // }
-        }
-      }
-      post {
-        success {
-            echo 'Build succeeded.'
-        }
-        unstable {
-            echo 'This build returned an unstable status.'
-        }
-        failure {
-            echo 'This build has failed. See logs for details.'
+        )
+        post {
+          success {
+              echo 'Build succeeded.'
+          }
+          unstable {
+              echo 'This build returned an unstable status.'
+          }
+          failure {
+              echo 'This build has failed. See logs for details.'
+          }
         }
       }
     }
