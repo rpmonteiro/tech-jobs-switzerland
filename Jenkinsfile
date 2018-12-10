@@ -133,17 +133,17 @@ pipeline {
           //   sh 'docker-compose run --name feature --rm web rspec spec/features/'
           // }
         )
-        post {
-          success {
-              echo 'Build succeeded.'
-          }
-          unstable {
-              echo 'This build returned an unstable status.'
-          }
-          failure {
-              echo 'This build has failed. See logs for details.'
-          }
-        }
+        // post {
+        //   success {
+        //       echo 'Build succeeded.'
+        //   }
+        //   unstable {
+        //       echo 'This build returned an unstable status.'
+        //   }
+        //   failure {
+        //       echo 'This build has failed. See logs for details.'
+        //   }
+        // }
       }
     }
 
