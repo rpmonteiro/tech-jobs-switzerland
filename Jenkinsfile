@@ -112,6 +112,7 @@
 pipeline {
   agent any
   stages {
+    
     stage('Build') {
       steps {
         sh 'docker build -t jobs-backend:latest .'
@@ -120,8 +121,9 @@ pipeline {
         // sh 'docker-compose run -e NODE_ENV=test --rm web yarn db:migrate'
       }
     }
+
     stage('Tests') {
-      parallel(
+      parallel {
         steps {
           "Unit Tests": {
             sh 'docker run --rm --name unit --rm -c "yarn test"'
@@ -130,17 +132,17 @@ pipeline {
           // "Feature tests": {
           //   sh 'docker-compose run --name feature --rm web yarn integration'
           // }
-        )
-        post {
-          success {
-              echo 'Build succeeded.'
-          }
-          unstable {
-              echo 'This build returned an unstable status.'
-          }
-          failure {
-              echo 'This build has failed. See logs for details.'
-          }
+        }
+      }
+      post {
+        success {
+            echo 'Build succeeded.'
+        }
+        unstable {
+            echo 'This build returned an unstable status.'
+        }
+        failure {
+            echo 'This build has failed. See logs for details.'
         }
       }
     }
