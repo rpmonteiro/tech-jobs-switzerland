@@ -127,7 +127,7 @@ pipeline {
       steps {
         parallel(
           "Unit Tests": {
-            sh 'docker run -p 8080:8080 --name jobs-backend --rm jobs-backend yarn test' 
+            sh 'docker run -p 5000:3000 --name jobs-backend --rm jobs-backend yarn test' 
           }
           // "Feature tests": {
           //   sh 'docker-compose run --name feature --rm web rspec spec/features/'
