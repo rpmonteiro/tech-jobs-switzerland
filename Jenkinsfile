@@ -115,20 +115,20 @@ pipeline {
     stage('Build') {
       steps {
         sh 'docker build -t jobs-backend:latest .'
-        sh 'docker-compose build'
-        sh 'docker-compose run web yarn'
-        sh 'docker-compose run -e NODE_ENV=test --rm web yarn db:migrate'
+        // sh 'docker-compose build'
+        // sh 'docker-compose run web yarn'
+        // sh 'docker-compose run -e NODE_ENV=test --rm web yarn db:migrate'
       }
     }
     stage('Tests') {
       parallel(
         steps {
           "Unit Tests": {
-            sh 'docker-compose run --name unit --rm web yarn test'
+            sh 'docker run --rm --name unit --rm -c "yarn test"'
           },
           // for when I have feature tests...
           // "Feature tests": {
-          //   sh 'docker-compose run --name feature --rm web yarn test'
+          //   sh 'docker-compose run --name feature --rm web yarn integration'
           // }
         )
         post {

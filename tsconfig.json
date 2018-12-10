@@ -3,15 +3,9 @@
     "baseUrl": "./src",
     "outDir": "dist",
     "target": "es5",
-    "lib": [
-      "es6",
-      "es7",
-      "dom"
-    ],
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/typings"
-    ],
+    "lib": ["es6", "es7", "dom"],
+    "typeRoots": ["./node_modules/@types", "./src/typings"],
+    "resolveJsonModule": true,
     "sourceMap": true,
     "allowJs": false,
     "jsx": "react",
@@ -33,13 +27,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "dist",
-    "build",
-    "node_modules"
-  ],
+  "include": ["src/**/*"],
+  "exclude": ["dist", "build", "node_modules"],
   "defaultSeverity": "warning"
 }

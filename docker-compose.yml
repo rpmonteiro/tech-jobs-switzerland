@@ -11,13 +11,11 @@ services:
       - /tmp/postgres_data:/var/lib/postgresql/data
 
   web:
-    build:
-      context: .
-      args:
-        - NODE_ENV=$NODE_ENV
-        - DATABASE_PORT=5432
-        - DATABASE_HOST=db
-        - DATABASE_URL=postgres://postgres@db/jobs_dev
+    image: jobs-backend:latest
+    environment:
+      - DATABASE_PORT=5432
+      - DATABASE_HOST=db
+      - DATABASE_URL=postgres://postgres@db/jobs_dev
     volumes:
       - .:/home/jobs-backend/
       - /home/jobs-backend/node_modules

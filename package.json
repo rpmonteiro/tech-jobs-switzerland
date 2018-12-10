@@ -4,12 +4,12 @@
   "description": "Backend for all the jobs websites",
   "main": "index.ts",
   "scripts": {
-    "start": "npm run dev",
+    "start:dev": "ENVIRONMENT=dev yarn dev",
+    "start:prod": "ENVIRONMENT=prod yarn dev",
+    "dev": "nodemon -e ts --exec \"npm run compile\"",
     "compile": "tsc && node dist",
-    "dev": "./node_modules/nodemon/bin/nodemon.js -e ts --exec \"npm run compile\"",
-    "test": "mocha --opts mocha.opts",
-    "db:create": "createdb",
-    "db:migrate": "node node_modules/db-migrate/bin/db-migrate up"
+    "test": "mocha --opts configs/mocha.opts",
+    "seed-data": "ENVIRONMENT=dev ts-node scripts/add-seed-data.ts"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/rpmonteiro/jobs-backend#readme",
   "dependencies": {
+    "@google-cloud/firestore": "^0.19.0",
     "@koa/cors": "2",
     "dotenv": "^6.0.0",
     "expect": "^23.6.0",
@@ -27,9 +28,6 @@
     "koa-bodyparser": "^4.2.1",
     "koa-helmet": "^4.0.0",
     "koa-router": "^7.4.0",
-    "massive": "^5.2.0",
-    "mocha": "^5.2.0",
-    "parse-database-url": "^0.3.0",
     "winston": "^3.0.0"
   },
   "devDependencies": {
@@ -41,15 +39,11 @@
     "@types/koa-helmet": "^3.1.2",
     "@types/koa-router": "^7.0.31",
     "@types/koa__cors": "^2.2.2",
-    "@types/massive": "^4.6.1",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.9.2",
-    "concurrently": "^4.0.0",
-    "db-migrate": "^0.11.1",
-    "db-migrate-pg": "^0.4.0",
-    "node-db-migrate": "^1.0.1",
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.3",
-    "ts-node": "^6.0.0",
+    "ts-node": "^7.0.1",
     "tsconfig-paths": "^3.6.0",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.11.0",
