@@ -13,7 +13,7 @@ ENV PORT $PORT
 # install dependencies first, in a different location for easier app bind mounting for local development
 WORKDIR /opt
 COPY package.json yarn.lock ./
-RUN yarn --no-optional && yarn cache clean --force
+RUN yarn && yarn cache clean --force
 ENV PATH /opt/node_modules/.bin:$PATH
 
 # copy in our source code last, as it changes the most
