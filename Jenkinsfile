@@ -154,7 +154,7 @@ pipeline {
       steps {
         sh 'docker tag jobs-backend:latest eu.gcr.io/jobs-backend-224200/jobs-backend:latest-staging'
         sh 'docker push eu.gcr.io/jobs-backend-224200/jobs-backend:latest-staging'
-        sh './scripts/deploy-to-staging'
+        sh './scripts/deploy-to-staging.sh'
       }
     }
 
