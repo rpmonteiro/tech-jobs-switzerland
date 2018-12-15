@@ -6,8 +6,8 @@
   "scripts": {
     "start:dev": "ENVIRONMENT=dev yarn dev",
     "start:prod": "yarn compile && ENVIRONMENT=prod yarn pm2 start dist/index.js",
-    "dev": "nodemon -e ts --exec \"npm run compile\"",
-    "compile": "tsc && node dist",
+    "dev": "nodemon -e ts --exec \"yarn compile && node dist\"",
+    "compile": "tsc",
     "test": "mocha --opts configs/mocha.opts",
     "seed-data": "ENVIRONMENT=dev ts-node scripts/add-seed-data.ts"
   },
