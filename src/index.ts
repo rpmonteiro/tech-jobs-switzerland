@@ -4,7 +4,6 @@ import helmet from 'koa-helmet'
 import winston from 'winston'
 import bodyParser from 'koa-bodyparser'
 import { Firestore } from '@google-cloud/firestore'
-
 import { logger } from './logger'
 import { config } from './config'
 import { router } from './routes'
