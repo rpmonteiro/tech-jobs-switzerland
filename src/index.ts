@@ -1,12 +1,13 @@
 import Koa from 'koa'
-import bodyParser from 'koa-bodyparser'
+import cors from '@koa/cors'
 import helmet from 'koa-helmet'
 import winston from 'winston'
-import cors from '@koa/cors'
+import bodyParser from 'koa-bodyparser'
+import { Firestore } from '@google-cloud/firestore'
+
 import { logger } from './logger'
 import { config } from './config'
 import { router } from './routes'
-import { Firestore } from '@google-cloud/firestore'
 
 const app = new Koa()
 const firestore = new Firestore({
