@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "start:dev": "ENVIRONMENT=dev yarn dev",
-    "start:prod": "ENVIRONMENT=prod yarn dev",
+    "start:prod": "yarn compile && ENVIRONMENT=prod yarn pm2 start dist/index.js",
     "dev": "nodemon -e ts --exec \"npm run compile\"",
     "compile": "tsc && node dist",
     "test": "mocha --opts configs/mocha.opts",
@@ -22,15 +22,16 @@
     "@google-cloud/firestore": "^0.19.0",
     "@koa/cors": "2",
     "dotenv": "^6.0.0",
-    "expect": "^23.6.0",
     "joi": "^13.7.0",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
     "koa-helmet": "^4.0.0",
     "koa-router": "^7.4.0",
-    "winston": "^3.0.0"
+    "winston": "^3.0.0",
+    "pm2": "^3.2.3"
   },
   "devDependencies": {
+    "expect": "^23.6.0",
     "@types/dotenv": "^4.0.3",
     "@types/expect": "^1.20.3",
     "@types/joi": "^13.6.0",
