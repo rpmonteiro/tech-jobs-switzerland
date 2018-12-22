@@ -1,3 +1,6 @@
+@small-button-height: 40px;
+@button-height: 45px;
+
 .button {
   border-radius: 1px;
   padding: 0 @spacing-larger;
@@ -7,6 +10,11 @@
   height: 45px;
   box-shadow: @shadow-discrete;
   text-transform: uppercase;
+
+  @media @tiny-phone {
+    height: @small-button-height;
+    padding: 0 @spacing-standard;
+  }
 
   &-red {
     background-color: @color-red;

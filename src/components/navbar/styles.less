@@ -1,19 +1,29 @@
+@small-navbar-height: 50px;
+@navbar-height: 65px;
+
 .navbar {
   padding: @spacing-standard 0;
 
   &__container {
-    height: 65px;
+    height: @navbar-height;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+
+    @media @tiny-phone {
+      height: @small-navbar-height;
+    }
   }
 
   &__logo {
     display: flex;
-    height: 100%;
 
     img {
-      height: 100%;
+      height: @navbar-height;
+
+      @media @tiny-phone {
+        height: @small-navbar-height;
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 import * as preact from 'preact'
 import { Link } from '../link'
-import classnames from 'classnames'
+import cn from 'classnames'
 import { LoadingSpinner } from '../loading-spinner'
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
   disabled?: boolean
   onClick?: () => void
   loading?: boolean
+  className?: string
 }
 
 export class Button extends preact.Component<Props> {
@@ -19,7 +20,7 @@ export class Button extends preact.Component<Props> {
   }
 
   render() {
-    const { text, to, color, disabled, loading } = this.props
+    const { text, to, color, disabled, loading, className } = this.props
 
     const buttonText = <span className="button__text">{text}</span>
     const childEl = to ? <Link to={to}>{buttonText}</Link> : buttonText
@@ -27,7 +28,7 @@ export class Button extends preact.Component<Props> {
 
     return (
       <button
-        className={classnames('button', color ? `button-${color}` : '')}
+        className={cn('button', color ? `button-${color}` : '', className)}
         disabled={disabled || loading}
         onClick={this.clickHandler}
       >
