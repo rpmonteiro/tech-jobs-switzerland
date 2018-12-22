@@ -1,40 +1,54 @@
 export type ContractType = 'full-time' | 'part-time' | 'contractor' | 'internship'
+export type NumberRange = [number] | [number, number] | null
+export type Coords = [number, number] | null
+
+export interface Job {
+  homeOffice: number
+  isRemote: boolean
+  link: string
+  salary: NumberRange
+  email: string
+  equity: NumberRange
+  contractPercentage: number
+  coords: Coords
+  location: string
+  createdAt: string
+  title: string
+  teaser: string
+  company: string
+  contractDuration: string
+  contractType: ContractType
+  logo: string
+  id: string
+}
+
+export interface FullJob extends Job {
+  description: string
+}
 
 export const emptyJob: Job = {
   id: '',
   title: '',
   teaser: '',
   company: '',
-  created: '',
+  createdAt: '',
   logo: '',
   location: '',
-  salary: '',
-  equity: '',
+  salary: null,
+  equity: null,
+  homeOffice: 0,
+  isRemote: false,
+  link: '',
   contractDuration: '',
-  contractPercentage: '',
-  contract: 'full-time',
+  contractPercentage: 100,
+  contractType: 'full-time',
   email: '',
-  coords: null,
-  description: ''
+  coords: null
 }
 
-export interface Job {
-  id: string
-  title: string
-  coords: Coords | null
-  description: string
-  teaser: string
-  company: string
-  created: string
-  logo: string
-  location: string
-  contract: ContractType
-  contractDuration: ''
-  contractPercentage: ''
-  salary?: string
-  equity?: string
-  email?: string
-  link?: string
+export const emptyFullJob: FullJob = {
+  ...emptyJob,
+  description: ''
 }
 
 export interface GooglePlacesAutocompleteResponse {
@@ -52,8 +66,6 @@ export interface GooglePlacesAutocompletePrediction {
     secondary_text: string
   }
 }
-
-export type Coords = [number, number]
 
 export interface GoogleGeolocationResult {
   formatted_address: string

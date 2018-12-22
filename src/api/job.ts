@@ -1,10 +1,10 @@
 import { config } from '../config'
-import { Job, Omit, ApiResponse, ValidateJobResponse } from '../types'
+import { Job, Omit, ApiResponse, ValidateJobResponse, FullJob } from '../types'
 import { fetch } from './fetch'
 
-export function getJob(id: string): Promise<ApiResponse<Job>> {
+export function getJob(id: string): Promise<ApiResponse<FullJob>> {
   const url = `${config.API_HOST}/job/${id}`
-  return fetch<ApiResponse<Job>>(url)
+  return fetch<ApiResponse<FullJob>>(url)
 }
 
 export function getJobs(): Promise<ApiResponse<Job[]>> {
@@ -12,7 +12,7 @@ export function getJobs(): Promise<ApiResponse<Job[]>> {
   return fetch<ApiResponse<Job[]>>(url)
 }
 
-export function validateJob(job: Job): Promise<ApiResponse<ValidateJobResponse>> {
+export function validateJob(job: FullJob): Promise<ApiResponse<ValidateJobResponse>> {
   const url = `${config.API_HOST}/job/validate`
   return fetch<ApiResponse<ValidateJobResponse>>(url, {
     method: 'POST',
@@ -20,7 +20,7 @@ export function validateJob(job: Job): Promise<ApiResponse<ValidateJobResponse>>
   })
 }
 
-export function postJob(newJob: Omit<Job, 'id'>): Promise<ApiResponse<Job>> {
+export function postJob(newJob: Omit<FullJob, 'id'>): Promise<ApiResponse<Job>> {
   const url = `${config.API_HOST}/job`
   const options = {
     body: JSON.stringify(newJob),

@@ -1,7 +1,7 @@
-import * as preact from 'preact';
-import { Link } from '../link';
-import swissFlagSvg from '../../icons/swissFlag.svg';
-import { Button } from '../button';
+import * as preact from 'preact'
+import { Link } from '../link'
+import swissFlagSvg from '../../icons/swissFlag.svg'
+import { Button } from '../button'
 
 export const NavBar = () => (
   <nav className="navbar">
@@ -11,10 +11,7 @@ export const NavBar = () => (
         <div>Switzerland</div>
         <img src={swissFlagSvg} />
       </Link>
-      <Button
-        text="Post a job"
-        to="/post-a-job"
-      />
+      <Button text="Post a job" to="/post-a-job" />
     </div>
   </nav>
-);
+)

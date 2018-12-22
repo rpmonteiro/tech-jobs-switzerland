@@ -60,7 +60,7 @@ export class LocationAutocomplete extends preact.Component<Props, State> {
       () => {
         debounceService.debounce(() => {
           googlePlacesAutocomplete(query)
-            .then(res => {
+            .then((res) => {
               this.setState({
                 predictions: res.predictions,
                 pristine: false,
@@ -115,14 +115,14 @@ export class LocationAutocomplete extends preact.Component<Props, State> {
       },
       () => {
         googleGeolocation(prediction.description)
-          .then(res => {
+          .then((res) => {
             const firstResult = res.results[0]
             const { lat, lng } = firstResult.geometry.location
             if (lat && lng) {
               onCoordsResolve([lat, lng])
             }
           })
-          .catch(err => {
+          .catch((err) => {
             console.warn('some error occurred', err)
           })
       }
@@ -164,11 +164,9 @@ export class LocationAutocomplete extends preact.Component<Props, State> {
     } = this.state
     const { inputName, label } = this.props
 
-    const noResultsFound = !pristine &&
-      !loading &&
-      isEmpty(predictions) && (
-        <div className="loc-autocomplete__no-results-found">No results found</div>
-      )
+    const noResultsFound = !pristine && !loading && isEmpty(predictions) && (
+      <div className="loc-autocomplete__no-results-found">No results found</div>
+    )
 
     const loadingSpinner = loading && (
       <div className="loc-autocomplete__loading-spinner">

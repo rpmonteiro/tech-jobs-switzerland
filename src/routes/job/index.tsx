@@ -1,11 +1,11 @@
 import * as preact from 'preact'
 import { getJob } from '../../api/job'
-import { emptyJob, Job } from '../../types'
+import { FullJob, emptyFullJob } from '../../types'
 import { CompDetails, CompanyDetails } from '../../components/job-details'
 import { Button } from '../../components/button'
 
 interface State {
-  job: Job
+  job: FullJob
   error: string
   loading: boolean
 }
@@ -16,14 +16,14 @@ interface Props {
 
 export class JobPage extends preact.Component<Props, State> {
   state = {
-    job: emptyJob,
+    job: emptyFullJob,
     error: '',
     loading: true
   }
 
   componentDidMount() {
     getJob(this.props.id)
-      .then(res => this.setState({ job: res.data, loading: false }))
+      .then((res) => this.setState({ job: res.data, loading: false }))
       .catch((err: Error) => this.setState({ error: err.message, loading: false }))
   }
 

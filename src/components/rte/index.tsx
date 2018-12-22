@@ -1,37 +1,37 @@
-import * as preact from 'preact';
-import Quill from 'quill';
-import 'quill/dist/quill.snow.css';
+import * as preact from 'preact'
+import Quill from 'quill'
+import 'quill/dist/quill.snow.css'
 
 interface Props {
-  setEditorRef: (el: Quill) => void;
+  setEditorRef: (el: Quill) => void
 }
 
 export class Rte extends preact.Component<Props> {
-  rte: Quill | null = null;
-  rteContainer: HTMLDivElement | null = null;
+  rte: Quill | null = null
+  rteContainer: HTMLDivElement | null = null
 
   componentDidMount() {
     if (!this.rteContainer) {
-      return;
+      return
     }
 
     this.rte = new Quill(this.rteContainer, {
       theme: 'snow',
-      placeholder: 'Add a description...',
-    });
+      placeholder: 'Add a description...'
+    })
 
-    this.props.setEditorRef(this.rte);
+    this.props.setEditorRef(this.rte)
   }
 
   shouldComponentUpdate() {
-    return false;
+    return false
   }
 
   setRteContainerRef = (el: HTMLDivElement) => {
-    this.rteContainer = el;
+    this.rteContainer = el
   }
 
-  render () {
-    return <div ref={this.setRteContainerRef} />;
+  render() {
+    return <div ref={this.setRteContainerRef} />
   }
 }

@@ -22,7 +22,7 @@ export class Home extends preact.Component<{}, State> {
 
   componentDidMount() {
     getJobs()
-      .then(res => this.setState({ jobs: res.data, loading: false }))
+      .then((res) => this.setState({ jobs: res.data, loading: false }))
       .catch((err: Error) => this.setState({ error: err.message, loading: false }))
   }
   render() {

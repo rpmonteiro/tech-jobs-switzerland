@@ -1,29 +1,20 @@
 import * as preact from 'preact'
-import { ContractType, Coords } from '../../types'
+import { ContractType, Coords, FullJob, emptyFullJob } from '../../types'
 import { Rte } from '../../components/rte'
 import { Quill } from 'quill'
 import { LocationAutocomplete } from '../../components/location-autocomplete'
 import { Button } from '../../components/button'
 import { validateJob } from '../../api/job'
+import { parseEventToFloat } from '../../utils/helpers'
 
 type RangeType = 'simple' | 'range' | ''
 
 interface State {
-  validating: boolean
-  coords: Coords | null
-  contractType: ContractType
   salaryType: RangeType
   equityType: RangeType
-  contractDuration: string
-  contractPercentage: string
+  jobData: FullJob
+  isValidating: boolean
   teaserCharsLeft: number
-  salary: string
-  salaryRangeFrom: string
-  salaryRangeTo: string
-  equity: string
-  equityRangeFrom: string
-  equityRangeTo: string
-  address: string
 }
 
 const TEASER_MAX_CHARS = 80
@@ -31,21 +22,13 @@ const TEASER_MAX_CHARS = 80
 // tslint:disable-next-line:max-line-length
 export class JobForm extends preact.Component<{}, State> {
   state = {
-    validating: false,
-    coords: null,
-    address: '',
-    salary: '',
-    salaryRangeFrom: '',
-    salaryRangeTo: '',
-    salaryType: 'simple' as RangeType,
-    equity: '',
+    salaryType: '' as RangeType,
     equityType: '' as RangeType,
-    equityRangeFrom: '',
-    equityRangeTo: '',
-    contractDuration: '',
-    contractPercentage: '',
-    contractType: 'full-time' as ContractType,
-    teaserCharsLeft: TEASER_MAX_CHARS
+    teaserCharsLeft: TEASER_MAX_CHARS,
+    isValidating: false,
+    jobData: {
+      ...emptyFullJob
+    }
   }
 
   descriptionRteSection: Quill
@@ -61,7 +44,7 @@ export class JobForm extends preact.Component<{}, State> {
     })
   }
 
-  handleInputChange = (stateKey: keyof State) => {
+  handleInputChange = (stateKey: keyof FullJob) => {
     return (event: Event): void => {
       const value = (event.target as HTMLInputElement).value || ''
 
@@ -73,12 +56,60 @@ export class JobForm extends preact.Component<{}, State> {
     this.teaserRef = el
   }
 
-  handleLocationSelect = (address: string) => {
-    this.setState({ address })
+  handleLocationSelect = (location: string) => {
+    this.setState({
+      jobData: {
+        ...this.state.jobData,
+        location
+      }
+    })
   }
 
   handleLocationCoords = (coords: Coords) => {
-    this.setState({ coords })
+    this.setState({
+      jobData: {
+        ...this.state.jobData,
+        coords
+      }
+    })
+  }
+
+  handleNumberRangeChange = (event: Event) => {
+    const key = (event.target as HTMLInputElement).dataset['key'] as 'salary' | 'equity'
+    const idx = parseInt((event.target as HTMLInputElement).dataset['idx'] || '', 10)
+    if (!idx || !key) {
+      return
+    }
+
+    const { jobData } = this.state
+    const value = parseEventToFloat(event)
+    const currValue = jobData[key]
+    const newValue = (currValue || []).slice()
+
+    if (idx === 1) {
+      newValue[0] = newValue[0] || value - value * 0.2
+      newValue[1] = value
+    } else {
+      newValue[0] = value
+    }
+
+    const validRange = newValue.some((n) => n > 0)
+    this.setState((state: State) => ({
+      jobData: {
+        ...state.jobData,
+        range: validRange ? newValue : null
+      }
+    }))
+  }
+
+  handleSalaryTypeChange = (event: Event) => {
+    const value = (event.target as HTMLInputElement).value || ''
+    this.setState({ salaryType: value as RangeType })
+  }
+
+  handleEquityTypeChange = (event: Event) => {
+    const value = (event.target as HTMLInputElement).value || ''
+    this.setState({ equityType: value as RangeType })
   }
 
   setEditorRef = (editor: Quill): void => {
@@ -86,35 +117,22 @@ export class JobForm extends preact.Component<{}, State> {
   }
 
   submitHandler = (): void => {
-    const job = {}
-    validateJob(job)
-      .then(res => {
-        if (res.data.valid) {
-          console.log('isValid')
-          return
-        }
-        throw new Error(res.data.message)
-      })
-      .catch((err: Error) => {
-        console.log('err', err)
-      })
+    // const job = {}
+    // validateJob(job)
+    //   .then((res) => {
+    //     if (res.data.valid) {
+    //       console.log('isValid')
+    //       return
+    //     }
+    //     throw new Error(res.data.message)
+    //   })
+    //   .catch((err: Error) => {
+    //     console.log('err', err)
+    //   })
   }
 
   render() {
-    const {
-      address,
-      validating,
-      teaserCharsLeft,
-      salaryType,
-      contractType,
-      salaryRangeFrom,
-      salaryRangeTo,
-      equityType,
-      equityRangeFrom,
-      equityRangeTo,
-      contractDuration,
-      contractPercentage
-    } = this.state
+    const { jobData, teaserCharsLeft, isValidating, salaryType, equityType } = this.state
 
     const titleSection = (
       <div class="form__section">
@@ -156,7 +174,7 @@ export class JobForm extends preact.Component<{}, State> {
             name="job-type-full"
             type="radio"
             value="full-time"
-            checked={contractType === 'full-time'}
+            checked={jobData.contractType === 'full-time'}
             onChange={this.handleInputChange('contractType')}
           />
           <label for="job-type-full">Full-time</label>
@@ -166,17 +184,17 @@ export class JobForm extends preact.Component<{}, State> {
             name="job-type-part"
             type="radio"
             value="part-time"
-            checked={contractType === 'part-time'}
+            checked={jobData.contractType === 'part-time'}
             onChange={this.handleInputChange('contractType')}
           />
           <label for="job-type-part">Part-time</label>
-          {contractType === 'part-time' && (
+          {jobData.contractType === 'part-time' && (
             <input
               type="text"
               maxLength={10}
               placeholder="80%"
               className="form__small-input"
-              value={contractPercentage}
+              value={jobData.contractPercentage}
               onInput={this.handleInputChange('contractPercentage')}
             />
           )}
@@ -186,11 +204,11 @@ export class JobForm extends preact.Component<{}, State> {
             name="job-type-contract"
             type="radio"
             value="contractor"
-            checked={contractType === 'contractor'}
+            checked={jobData.contractType === 'contractor'}
             onChange={this.handleInputChange('contractType')}
           />
           <label for="job-type-contract">Contractor</label>
-          {contractType === 'contractor' && (
+          {jobData.contractType === 'contractor' && (
             <div>
               <input
                 name="contract-duration"
@@ -198,7 +216,7 @@ export class JobForm extends preact.Component<{}, State> {
                 type="text"
                 maxLength={10}
                 placeholder="6 months"
-                value={contractDuration}
+                value={jobData.contractDuration}
                 onInput={this.handleInputChange('contractDuration')}
               />
             </div>
@@ -209,7 +227,7 @@ export class JobForm extends preact.Component<{}, State> {
             name="job-type-internship"
             type="radio"
             value="internship"
-            checked={contractType === 'internship'}
+            checked={jobData.contractType === 'internship'}
             onChange={this.handleInputChange('contractType')}
           />
           <label for="job-type-internship">Internship</label>
@@ -222,14 +240,14 @@ export class JobForm extends preact.Component<{}, State> {
         <div class="form__input__label">Office location</div>
         <LocationAutocomplete
           inputName="location"
-          initialValue={address}
+          initialValue={jobData.location}
           onCoordsResolve={this.handleLocationCoords}
           onSelect={this.handleLocationSelect}
         />
       </div>
     )
 
-    const isContractor = contractType === 'contractor'
+    const isContractor = jobData.contractType === 'contractor'
     const salarySection = (
       <div class="form__section">
         <div class="form__input__label">Salary (in CHF)</div>
@@ -242,46 +260,53 @@ export class JobForm extends preact.Component<{}, State> {
             type="radio"
             value="simple"
             checked={salaryType === 'simple'}
-            onChange={this.handleInputChange('salaryType')}
+            onChange={this.handleSalaryTypeChange}
           />
           <label for="salary-simple">{isContractor ? 'Daily rate' : 'Salary'}</label>
           {salaryType === 'simple' && (
             <input
+              data-idx="0"
+              data-key="salary"
               className="form__small-input"
               type="text"
               maxLength={5}
               placeholder={isContractor ? '750' : '80k'}
-              onInput={this.handleInputChange('salary')}
+              onInput={this.handleNumberRangeChange}
             />
           )}
         </div>
         <div class="row">
           <input
-            name="salary-range"
+            name="range"
             type="radio"
             value="range"
             checked={salaryType === 'range'}
-            onChange={this.handleInputChange('salaryType')}
+            onChange={this.handleSalaryTypeChange}
           />
           <label for="salary-range">{isContractor ? 'Daily rate range' : 'Salary range'}</label>
           {salaryType === 'range' && (
             <div class="form__input__range">
               <input
                 type="text"
+                data-idx="0"
+                data-key="salary"
                 maxLength={5}
-                value={salaryRangeFrom}
+                name="salary-range"
+                value={(jobData.salary && jobData.salary[0]) || ''}
                 placeholder={isContractor ? '750' : '80k'}
                 className="form__small-input"
-                onInput={this.handleInputChange('salaryRangeFrom')}
+                onInput={this.handleNumberRangeChange}
               />
               <span>to</span>
               <input
                 type="text"
+                data-idx="1"
+                data-key="salary"
                 maxLength={5}
-                value={salaryRangeTo}
+                value={(jobData.salary && jobData.salary[0]) || ''}
                 placeholder={isContractor ? '1100' : '100k'}
                 className="form__small-input"
-                onInput={this.handleInputChange('salaryRangeTo')}
+                onInput={this.handleNumberRangeChange}
               />
             </div>
           )}
@@ -292,7 +317,7 @@ export class JobForm extends preact.Component<{}, State> {
             type="radio"
             value=""
             checked={!salaryType}
-            onChange={this.handleInputChange('salaryType')}
+            onChange={this.handleSalaryTypeChange}
           />
           <label for="salary-null">
             {`Don't display ${isContractor ? 'daily rate' : 'salary'}`}
@@ -310,7 +335,7 @@ export class JobForm extends preact.Component<{}, State> {
             type="radio"
             value="simple"
             checked={equityType === 'simple'}
-            onChange={this.handleInputChange('equityType')}
+            onChange={this.handleEquityTypeChange}
           />
           <label for="equity-simple">{'Equity'}</label>
           {equityType === 'simple' && (
@@ -323,27 +348,31 @@ export class JobForm extends preact.Component<{}, State> {
             type="radio"
             value="range"
             checked={equityType === 'range'}
-            onChange={this.handleInputChange('equityType')}
+            onChange={this.handleEquityTypeChange}
           />
-          <label for="equity-range">{'Equity range'}</label>
+          <label>{'Equity range'}</label>
           {equityType === 'range' && (
             <div class="form__input__range">
               <input
                 type="text"
                 maxLength={4}
+                data-idx="0"
+                data-key="equity"
                 placeholder={isContractor ? '0.5' : '8'}
                 className="form__small-input"
-                value={equityRangeFrom}
-                onInput={this.handleInputChange('equityRangeFrom')}
+                value={(jobData.equity && jobData.equity[0]) || ''}
+                onInput={this.handleNumberRangeChange}
               />
               <span>to</span>
               <input
                 type="text"
                 maxLength={4}
+                data-idx="1"
+                data-key="equity"
                 placeholder={isContractor ? '1100' : '100k'}
                 className="form__small-input"
-                value={equityRangeTo}
-                onInput={this.handleInputChange('equityRangeTo')}
+                value={(jobData.equity && jobData.equity[0]) || ''}
+                onInput={this.handleNumberRangeChange}
               />
             </div>
           )}
@@ -354,7 +383,7 @@ export class JobForm extends preact.Component<{}, State> {
             type="radio"
             value=""
             checked={!equityType}
-            onChange={this.handleInputChange('equityType')}
+            onChange={this.handleEquityTypeChange}
           />
           <label for="equity-null">{'No equity'}</label>
         </div>
@@ -370,7 +399,7 @@ export class JobForm extends preact.Component<{}, State> {
 
     const submitButton = (
       <div class="form__submit-button">
-        <Button text="Next" onClick={this.submitHandler} loading={validating} />
+        <Button text="Next" onClick={this.submitHandler} loading={isValidating} />
       </div>
     )
 
