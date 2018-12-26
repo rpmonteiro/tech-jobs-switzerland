@@ -1,25 +1,28 @@
 .job-card {
   display: flex;
-  padding: 1rem;
+  padding: @spacing-standard;
   border-radius: 2px;
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background-color: @white;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.12);
   transition: background-color 100ms;
 
+  &__container {
+    & + & {
+      margin-top: 1rem;
+    }
+  }
+
   &__title {
-    font-size: @font-size-normal;
-    font-weight: 700;
+    .font-big();
     transition: color 50ms;
   }
 
-  &__type {
+  &__time-ago {
     font-size: @font-size-smaller;
-    margin-top: 2px;
-
-    img {
-      margin-right: @spacing-tiny;
-      height: 13px;
-    }
+    color: @font-color-secondary;
+    text-align: right;
+    margin-top: @spacing-tiny;
+    margin-right: @spacing-standard;
   }
 
   &__image {
@@ -29,26 +32,20 @@
     }
   }
 
-  &__details {
+  &__details-container {
     margin-left: 1rem;
-
-    .row {
-      display: flex;
-      font-weight: 500;
-      margin-top: @spacing-small;
-      align-items: baseline;
-
-      &:first-child {
-        margin-top: @spacing-tiny;
-      }
-    }
-
-    &__teaser {
-      margin-top: @spacing-small;
-    }
   }
 
-  & + & {
-    margin-top: 1rem;
+  &__details {
+    margin-top: @spacing-small;
+    font-weight: 500;
+    font-size: @font-size-smaller;
+    color: @font-color-secondary;
+  }
+
+  &__company {
+    font-weight: 600;
+    color: @font-color-secondary;
+    font-size: @font-size-normal;
   }
 }
