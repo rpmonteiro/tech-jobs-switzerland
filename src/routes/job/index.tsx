@@ -61,7 +61,7 @@ export class JobPage extends preact.Component<Props, State> {
 
     const applyButton = (
       <div className="job-page__button-container">
-        <Button text="Apply for this job" to={job.link} />
+        <Button text="Apply to this job now" to={job.link} />
       </div>
     )
 
