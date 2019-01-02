@@ -1,8 +1,9 @@
 import * as preact from 'preact'
 import { getJob } from '../../api/job'
 import { FullJob, emptyFullJob } from '../../types'
-import { CompDetails, CompanyDetails } from '../../components/job-details'
+import { JobDetails, JobTitle } from '../../components/job-details'
 import { Button } from '../../components/button'
+import { Divider } from '../../components/divider/divider'
 
 interface State {
   job: FullJob
@@ -40,11 +41,13 @@ export class JobPage extends preact.Component<Props, State> {
 
     const jobHeader = (
       <div className="job-page__header">
-        <img className="job-page__header__company-logo" src={job.logo} />
-        <div className="job-page__header__details">
-          <h3 className="job-page__header__title">{job.title}</h3>
-          <CompanyDetails job={job} />
-          <CompDetails job={job} />
+        <Divider />
+        <div className="job-page__header__content">
+          <img className="job-page__header__content__company-logo" src={job.logo} />
+          <div className="job-page__header__content__details">
+            <JobTitle title={job.title} company={job.company} />
+            <JobDetails job={job} />
+          </div>
         </div>
       </div>
     )
@@ -58,15 +61,17 @@ export class JobPage extends preact.Component<Props, State> {
 
     const applyButton = (
       <div className="job-page__button-container">
-        <Button color="red" text="Apply for this job" to={job.link} />
+        <Button text="Apply for this job" to={job.link} />
       </div>
     )
 
     return (
       <div class="job-page">
         {jobHeader}
-        {jobDescription}
-        {applyButton}
+        <div className="job-page__container">
+          {jobDescription}
+          {applyButton}
+        </div>
       </div>
     )
   }

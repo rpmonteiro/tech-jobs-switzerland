@@ -1,8 +1,28 @@
+.job-title {
+  color: @font-color-secondary;
+  margin-bottom: @spacing-standard;
+
+  &__job {
+    font-weight: @font-weight-bold;
+    font-size: @font-size-large;
+    transform: translateY(-15%);
+    margin-bottom: -@spacing-tiny;
+  }
+}
+
 .job-details {
   font-size: @font-size-smaller;
+  font-weight: 600;
+  color: @gray-0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: -@spacing-small;
+  margin-right: -@spacing-small;
 
   > * {
-    width: 50%;
+    margin-top: @spacing-small;
+    margin-right: @spacing-small;
   }
 
   & + & {
@@ -10,7 +30,7 @@
   }
 
   img {
-    margin-right: 2px;
+    margin-right: @spacing-tiny;
     height: 14px;
   }
 
@@ -20,11 +40,24 @@
       margin-right: @spacing-tiny;
     }
   }
-  
+
+  &__contract {
+    display: flex;
+    align-items: center;
+  }
+
   &__salary {
+    display: flex;
+    align-items: center;
+
     img {
-      height: 9px;
+      height: 13px;
     }
+  }
+
+  &__location {
+    display: flex;
+    align-items: center;
   }
 
   &__equity {
