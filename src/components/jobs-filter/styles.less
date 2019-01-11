@@ -1,0 +1,56 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.jobs-filter {
+  margin-left: @spacing-huge;
+
+  @media @tablet {
+    flex: 1;
+  }
+
+  @media @desktop {
+    flex: 0.7;
+  }
+
+  @media @big-desktop {
+    flex: 0.5;
+  }
+
+  &__sticky-container {
+    position: sticky;
+    top: @spacing-huge;
+  }
+
+  &__options-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
+
+  &__header {
+    .subheaderText();
+    margin-bottom: @spacing-small;
+  }
+
+  &__option {
+    padding: 10px;
+    border: 1px solid @gray-0;
+    flex-grow: 1;
+    width: 50%;
+    margin: 0 -1px -1px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: @font-color-1;
+
+    &-selected {
+      border: 5px solid @color-red;
+    }
+  }
+
+  &__icon {
+    height: 20px;
+    margin-right: @spacing-tiny;
+  }
+}
