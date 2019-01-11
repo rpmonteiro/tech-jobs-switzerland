@@ -6,6 +6,7 @@ import { LocationAutocomplete } from '../../components/location-autocomplete'
 import { Button } from '../../components/button'
 import { validateJob } from '../../api/job'
 import { parseEventToFloat } from '../../utils/helpers'
+import './styles.less'
 
 type RangeType = 'simple' | 'range' | ''
 

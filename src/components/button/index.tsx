@@ -2,6 +2,7 @@ import * as preact from 'preact'
 import { Link } from '../link'
 import cn from 'classnames'
 import { LoadingSpinner } from '../loading-spinner'
+import './styles.less'
 
 interface Props {
   to?: string

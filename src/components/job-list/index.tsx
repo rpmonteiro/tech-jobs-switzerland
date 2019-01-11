@@ -1,6 +1,7 @@
 import * as preact from 'preact'
 import { JobCard } from '../job-card'
 import { Job } from '../../types'
+import './styles.less'
 
 interface Props {
   jobs: Job[]

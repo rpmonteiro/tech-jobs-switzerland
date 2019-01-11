@@ -4,6 +4,7 @@ import { FullJob, emptyFullJob } from '../../types'
 import { JobDetails, JobTitle } from '../../components/job-details'
 import { Button } from '../../components/button'
 import { Divider } from '../../components/divider/divider'
+import './styles.less'
 
 interface State {
   job: FullJob

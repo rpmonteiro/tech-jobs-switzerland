@@ -1,16 +1,6 @@
 @import './variables.less';
-@import './utils/normalize';
-@import './routes/home/styles.less';
-@import './routes/job/styles.less';
-@import './routes/job-form/styles.less';
-@import './components//navbar/styles.less';
-@import './components/button/styles.less';
-@import './components/job-list/styles.less';
-@import './components/job-details/styles.less';
-@import './components/job-card/styles.less';
-@import './components/location-autocomplete/styles.less';
-@import './components/loading-spinner/styles.less';
-@import './components/divider/styles.less';
+@import './normalize';
+@import './mixins.less';
 
 @font-face {
   font-family: 'clone-rounded-latin';
@@ -174,7 +164,7 @@ button {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to bottom, white -75%, transparent), url('./assets/bg.svg');
+  background: linear-gradient(to bottom, white -75%, transparent), url('../assets/bg.svg');
 
   &-page {
     padding-bottom: @spacing-large;

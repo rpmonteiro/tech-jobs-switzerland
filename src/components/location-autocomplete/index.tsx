@@ -5,6 +5,7 @@ import { LoadingSpinner } from '../loading-spinner'
 import { isEmpty } from '../../utils/helpers'
 import { debounceService } from '../../utils/debounce'
 import classNames from 'classnames'
+import './styles.less'
 
 interface Props {
   inputName: string

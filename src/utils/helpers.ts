@@ -12,6 +12,18 @@ export const isEmpty = (obj: Object | any[] | undefined | null): boolean => {
   return Object.keys(obj).length === 0
 }
 
+export const toggleArrayValue = (arr: string[], str: string): string[] => {
+  const newArr = arr.slice()
+  const idx = newArr.indexOf(str)
+  if (idx > -1) {
+    newArr.splice(idx, 1)
+  } else {
+    newArr.push(str)
+  }
+
+  return newArr
+}
+
 export const parseContractTypeDetail = (job: Job): string => {
   const { contractType, contractPercentage, contractDuration } = job
 
@@ -35,9 +47,7 @@ export const parseSalary = (job: Job | FullJob): string => {
     return ''
   }
 
-  const values = 'CHF\u00a0'.concat(
-    salary.map((n) => (contractor ? n.toString() : `${n}k`)).join('\u00a0-\u00a0')
-  )
+  const values = salary.map((n) => (contractor ? n.toString() : `${n}k`)).join('\u00a0-\u00a0')
   if (contractor) {
     return `${values}\u00a0/\u00a0day`
   }
@@ -46,7 +56,7 @@ export const parseSalary = (job: Job | FullJob): string => {
 }
 
 export const parseEquity = (equity: NumberRange): string => {
-  return equity ? equity.map((n) => `${n}%`).join('\u00a0-\u00a0') : ''
+  return equity ? equity.join('\u00a0-\u00a0') : ''
 }
 
 export const parseEventToFloat = (event: Event): number => {

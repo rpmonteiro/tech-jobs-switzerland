@@ -22,6 +22,29 @@ export interface Job {
   id: string
 }
 
+export type JobFilter =
+  | 'backend'
+  | 'frontend'
+  | 'fullstack'
+  | 'designer-ux'
+  | 'devops-sysadmin'
+  | 'sales-marketing'
+  | 'business-product'
+  | 'customer-support'
+
+export type JobFilterEnum = { [key in JobFilter]: string }
+
+export const JobFilterToLabelEnum: JobFilterEnum = {
+  backend: 'Backend developer',
+  frontend: 'Frontend developer',
+  fullstack: 'Fullstack developer',
+  'designer-ux': 'Designer / UX',
+  'devops-sysadmin': 'Devops / Sys-admin',
+  'sales-marketing': 'Sales / Marketing',
+  'business-product': 'Business / Product',
+  'customer-support': 'Customer support'
+}
+
 export interface FullJob extends Job {
   description: string
 }

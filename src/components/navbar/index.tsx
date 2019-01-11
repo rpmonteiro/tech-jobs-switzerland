@@ -2,6 +2,7 @@ import * as preact from 'preact'
 import { Link } from '../link'
 import logoSvg from '../../assets/logo.svg'
 import { Button } from '../button'
+import './styles.less'
 
 export const NavBar = () => (
   <nav className="navbar">

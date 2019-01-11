@@ -3,9 +3,9 @@ import markerSvg from '../../assets/marker.svg'
 import chfSvg from '../../assets/chf.svg'
 import percentageSvg from '../../assets/percentage.svg'
 import clockSvg from '../../assets/clock.svg'
-import { Link } from '../link'
 import { Job } from '../../types'
 import { parseSalary, parseEquity, toTitleCase } from '../../utils/helpers'
+import './styles.less'
 
 interface JobTitleProps {
   title: string

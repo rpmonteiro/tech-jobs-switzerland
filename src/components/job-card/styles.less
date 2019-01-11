@@ -1,3 +1,5 @@
+@import '../../styles/variables.less';
+
 .job-card {
   display: flex;
   padding: @spacing-standard;
@@ -6,23 +8,19 @@
   box-shadow: 0 1px 0px rgba(0, 0, 0, 0.12);
   transition: background-color 100ms;
 
-  &__container {
-    & + & {
-      margin-top: 1rem;
-    }
-  }
-
-  &__title {
-    .font-big();
-    transition: color 50ms;
-  }
-
   &__time-ago {
-    font-size: @font-size-smaller;
-    color: @font-color-secondary;
+    font-weight: @font-weight-bold;
+    color: @font-color-2;
     text-align: right;
     margin-top: @spacing-tiny;
     margin-right: @spacing-standard;
+    font-size: @font-size-smaller;
+  }
+
+  &__container {
+    & + & {
+      margin-top: @spacing-larger;
+    }
   }
 
   &__image {
@@ -32,20 +30,7 @@
     }
   }
 
-  &__details-container {
-    margin-left: 1rem;
-  }
-
-  &__details {
-    margin-top: @spacing-small;
-    font-weight: 500;
-    font-size: @font-size-smaller;
-    color: @font-color-secondary;
-  }
-
-  &__company {
-    font-weight: 600;
-    color: @font-color-secondary;
-    font-size: @font-size-normal;
+  &__content {
+    margin-left: @spacing-standard;
   }
 }
