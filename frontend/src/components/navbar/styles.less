@@ -1,7 +1,7 @@
 @import '../../styles/variables.less';
 
 @small-navbar-height: 50px;
-@navbar-height: 65px;
+@navbar-height: 57px;
 
 .navbar {
   padding: @spacing-standard 0;
@@ -11,9 +11,10 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-
-    @media @tiny-phone {
+    margin-bottom: 29px;
+    @media @phone {
       height: @small-navbar-height;
+      margin-bottom: 23px;
     }
   }
 
@@ -21,12 +22,19 @@
     display: flex;
 
     img {
-      height: @navbar-height;
+      height: 57px;
 
       @media @tiny-phone {
         height: @small-navbar-height;
+
       }
     }
+  }
+  &__divider {
+    display: block;
+    height: 5px;
+    background-image: url('../../assets/navbar-divider.svg');
+    background-repeat: repeat-x;
   }
 }
 
