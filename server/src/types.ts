@@ -4,6 +4,16 @@ type NumberRange = null | [number] | [number, number]
 type ContractType = 'full-time' | 'contractor' | 'part-time' | 'internship'
 type ContractDuration = number | null
 
+type JobCategory =
+  | 'backend'
+  | 'frontend'
+  | 'fullstack'
+  | 'designer-ux'
+  | 'devops-sysadmin'
+  | 'sales-marketing'
+  | 'business-product'
+  | 'customer-support'
+
 // TODO: define and add job_category
 export interface Job {
   title: string
@@ -23,4 +33,5 @@ export interface Job {
   link: string
   email: string
   description: string
+  category: JobCategory
 }
