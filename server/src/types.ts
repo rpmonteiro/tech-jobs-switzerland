@@ -21,13 +21,13 @@ export interface Job {
   company: string
   isRemote: boolean
   homeOffice: number
-  created_at: Timestamp
+  createdAt: Timestamp
   coords: GeoPoint
   logo: string
   location: string
-  contract_percentage: number
-  contract_type: ContractType
-  contract_duration: ContractDuration
+  contractPercentage: number
+  contractType: ContractType
+  contractDuration: ContractDuration
   salary: NumberRange
   equity: NumberRange
   link: string
