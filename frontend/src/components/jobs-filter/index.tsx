@@ -25,16 +25,23 @@ const options: FilterOption[] = Object.keys(JobFilterToLabelEnum).map((k) => ({
 export class JobsFilter extends preact.Component<JobFilterProps> {
   clickHandler = (e: Event) => {
     const { filter, changeHandler } = this.props
-    const newFilter = toggleArrayValue(filter, (e.target as HTMLInputElement).value) as JobFilter[]
+    const value = (e.currentTarget as HTMLInputElement).dataset.value as string
+
+    if (!value) {
+      return
+    }
+
+    const newFilter = toggleArrayValue(filter, value) as JobFilter[]
     changeHandler(newFilter)
   }
 
   render() {
     const { filter } = this.props
+
     const opts = options.map(({ label, value, icon }) => (
       <div
         onClick={this.clickHandler}
-        value={value}
+        data-value={value}
         className={cn('jobs-filter__option', {
           'jobs-filter__option-selected': filter.includes(value)
         })}
