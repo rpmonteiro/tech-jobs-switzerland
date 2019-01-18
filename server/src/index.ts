@@ -9,8 +9,6 @@ import { logger } from './logger'
 import { config } from './config'
 import { router } from './routes'
 
-console.log('lalalalalalal')
-
 const app = new Koa()
 const firestore = new Firestore({
   projectId: config.googleProjectId,

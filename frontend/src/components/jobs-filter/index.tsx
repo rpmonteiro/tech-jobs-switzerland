@@ -1,24 +1,24 @@
 import * as preact from 'preact'
-import { JobFilter, JobFilterToLabelEnum } from '../../types'
+import { JobCategory, JobCategoryToLabelEnum } from '../../types'
 import cn from 'classnames'
 import { toggleArrayValue } from '../../utils/helpers'
 import filterIcons from '../../assets/*.png'
 import './styles.less'
 
 interface JobFilterProps {
-  changeHandler: (filter: JobFilter[]) => void
-  filter: JobFilter[]
+  changeHandler: (filter: JobCategory[]) => void
+  filter: JobCategory[]
 }
 
 interface FilterOption {
   label: string
-  value: JobFilter
+  value: JobCategory
   icon: string
 }
 
-const options: FilterOption[] = Object.keys(JobFilterToLabelEnum).map((k) => ({
-  label: JobFilterToLabelEnum[k as JobFilter],
-  value: k as JobFilter,
+const options: FilterOption[] = Object.keys(JobCategoryToLabelEnum).map((k) => ({
+  label: JobCategoryToLabelEnum[k as JobCategory],
+  value: k as JobCategory,
   icon: filterIcons[k]
 }))
 
@@ -31,7 +31,7 @@ export class JobsFilter extends preact.Component<JobFilterProps> {
       return
     }
 
-    const newFilter = toggleArrayValue(filter, value) as JobFilter[]
+    const newFilter = toggleArrayValue(filter, value) as JobCategory[]
     changeHandler(newFilter)
   }
 

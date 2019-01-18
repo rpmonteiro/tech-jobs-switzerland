@@ -20,9 +20,10 @@ export interface Job {
   contractType: ContractType
   logo: string
   id: string
+  category: JobCategory
 }
 
-export type JobFilter =
+export type JobCategory =
   | 'backend'
   | 'frontend'
   | 'fullstack'
@@ -32,9 +33,9 @@ export type JobFilter =
   | 'business-product'
   | 'customer-support'
 
-export type JobFilterEnum = { [key in JobFilter]: string }
+export type JobCategoryEnum = { [key in JobCategory]: string }
 
-export const JobFilterToLabelEnum: JobFilterEnum = {
+export const JobCategoryToLabelEnum: JobCategoryEnum = {
   backend: 'Backend developer',
   frontend: 'Frontend developer',
   fullstack: 'Fullstack developer',
@@ -66,7 +67,8 @@ export const emptyJob: Job = {
   contractPercentage: 100,
   contractType: 'full-time',
   email: '',
-  coords: null
+  coords: null,
+  category: ''
 }
 
 export const emptyFullJob: FullJob = {
