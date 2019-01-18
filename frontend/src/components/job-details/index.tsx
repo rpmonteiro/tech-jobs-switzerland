@@ -26,7 +26,7 @@ interface JobDetailsProps {
 export const JobDetails: preact.FunctionalComponent<JobDetailsProps> = ({ job }) => (
   <div className="job-details">
     {job.contractType && (
-      <div className="job-details__contract">
+      <div title="Job contract" className="job-details__contract">
         <img src={clockSvg} />
         {toTitleCase(job.contractType)}
         {job.contractDuration && (
@@ -37,19 +37,19 @@ export const JobDetails: preact.FunctionalComponent<JobDetailsProps> = ({ job })
       </div>
     )}
     {job.location && (
-      <div className="job-details__location">
+      <div title="Job location" className="job-details__location">
         <img src={markerSvg} />
         {job.location}
       </div>
     )}
     {job.salary && (
-      <div className="job-details__salary">
+      <div title="Job salary" className="job-details__salary">
         <img src={chfSvg} />
         {parseSalary(job)}
       </div>
     )}
     {job.equity && (
-      <div className="job-details__equity">
+      <div title="Equity given" className="job-details__equity">
         <img src={percentageSvg} />
         {parseEquity(job.equity)}
       </div>
