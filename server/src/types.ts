@@ -35,3 +35,7 @@ export interface Job {
   description: string
   category: JobCategory
 }
+
+export interface JobWithId extends Job {
+  id: string
+}

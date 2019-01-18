@@ -13,8 +13,8 @@ const collection = firestore.collection('jobs')
 let count = 0
 seedJobs.map(async (data) => {
   try {
-    await collection.add(data)
     count++
+    await collection.add(data)
   } catch (error) {
     console.log('Something went wrong adding this document', data)
   }

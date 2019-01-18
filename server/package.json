@@ -4,11 +4,12 @@
   "description": "Backend for all the jobs websites",
   "main": "index.ts",
   "scripts": {
-    "dev": "ENVIRONMENT=dev nodemon -e ts --exec \"yarn compile && node dist\"",
+    "dev": "ENVIRONMENT=dev pm2-dev start ecosystem.config.js",
     "prod": "yarn compile && ENVIRONMENT=prod yarn pm2 start dist/index.js",
     "compile": "tsc",
     "test": "mocha --opts configs/mocha.opts",
-    "seed-data": "ENVIRONMENT=dev ts-node scripts/add-seed-data.ts"
+    "seed-data": "ENVIRONMENT=dev ts-node scripts/add-seed-data.ts",
+    "postinstall": "pm2 install typescript && pm2 install ts-node"
   },
   "repository": {
     "type": "git",
@@ -26,11 +27,10 @@
     "koa-bodyparser": "^4.2.1",
     "koa-helmet": "^4.0.0",
     "koa-router": "^7.4.0",
-    "winston": "^3.0.0",
-    "pm2": "^3.2.3"
+    "pm2": "^3.2.3",
+    "winston": "^3.0.0"
   },
   "devDependencies": {
-    "expect": "^23.6.0",
     "@types/dotenv": "^4.0.3",
     "@types/expect": "^1.20.3",
     "@types/joi": "^13.6.0",
@@ -41,10 +41,10 @@
     "@types/koa__cors": "^2.2.2",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.9.2",
+    "expect": "^23.6.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.3",
     "ts-node": "^7.0.1",
-    "tsconfig-paths": "^3.6.0",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",

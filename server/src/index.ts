@@ -9,10 +9,15 @@ import { logger } from './logger'
 import { config } from './config'
 import { router } from './routes'
 
+console.log('lalalalalalal')
+
 const app = new Koa()
 const firestore = new Firestore({
   projectId: config.googleProjectId,
   keyFilename: config.firestoreKeyPath
+})
+firestore.settings({
+  timestampsInSnapshots: true
 })
 
 app.context.firestore = firestore
