@@ -1,7 +1,7 @@
 @import './variables.less';
 
 .subheaderText {
-  margin-top: -@spacing-tiny;
+  margin-top: @spacing-min;
   font-size: @font-size-copy;
   font-weight: 800;
   text-transform: uppercase;
@@ -12,52 +12,55 @@
 // Spacing Mixins - Large
 
 .padTopLarge {
-  @media @mq-phone {padding-top: 30px;}
-  @media @mq-tablet {padding-top: 40px;}
-  @media @mq-desktop {padding-top: 60px;}
+  @media @mq-phone {padding-top: @spacing-standard;}
+  @media @mq-tablet {padding-top: @spacing-large;}
+  @media @mq-desktop {padding-top: @spacing-max;}
 }
 
 .padBotLarge {
-  @media @mq-phone {padding-bottom: 30px;}
-  @media @mq-tablet {padding-bottom: 40px;}
-  @media @mq-desktop {padding-bottom: 60px;}
+  @media @mq-phone {padding-bottom: @spacing-standard;}
+  @media @mq-tablet {padding-bottom: @spacing-large;}
+  @media @mq-desktop {padding-bottom: @spacing-max;}
 }
 
 .marTopLarge {
-  @media @mq-phone {margin-top: 30px;}
-  @media @mq-tablet {margin-top: 40px;}
-  @media @mq-desktop {margin-top: 60px;}
+  @media @mq-phone {margin-top: @spacing-standard;}
+  @media @mq-tablet {margin-top: @spacing-large;}
+  @media @mq-desktop {margin-top: @spacing-max;}
 }
 
 .marBotLarge {
-  @media @mq-phone {margin-bottom: 30px;}
-  @media @mq-tablet {margin-bottom: 40px;}
-  @media @mq-desktop {margin-bottom: 60px;}
+  @media @mq-phone {margin-bottom: @spacing-standard;}
+  @media @mq-tablet {margin-bottom: @spacing-large;}
+  @media @mq-desktop {margin-bottom: @spacing-max;}
 }
 
 // Spacing Mixins - Small
 
 .padTopSmall {
-  @media @mq-phone {padding-top: 15px;}
-  @media @mq-tablet {padding-top: 20px;}
-  @media @mq-desktop {padding-top: 30px;}
+  @media @mq-phone {padding-top: @spacing-tiny;}
+  @media @mq-tablet {padding-top: @spacing-small;}
+  @media @mq-desktop {padding-top: @spacing-standard;}
 }
 
 .padBotSmall {
-  @media @mq-phone {padding-bottom: 15px;}
-  @media @mq-tablet {padding-bottom: 20px;}
-  @media @mq-desktop {padding-bottom: 30px;}
+  @media @mq-phone {padding-bottom: @spacing-tiny;}
+  @media @mq-tablet {padding-bottom: @spacing-small;}
+  @media @mq-desktop {padding-bottom: @spacing-standard;}
 }
 
 .marTopSmall {
-  @media @mq-phone {margin-top: 15px;}
-  @media @mq-tablet {margin-top: 20px;}
-  @media @mq-desktop {margin-top: 30px;}
+  @media @mq-phone {margin-top: @spacing-tiny;}
+  @media @mq-tablet {margin-top: @spacing-small;}
+  @media @mq-desktop {margin-top: @spacing-standard;}
 }
 
 .marBotSmall {
-  @media @mq-phone {margin-bottom: 15px;}
-  @media @mq-tablet {margin-bottom: 20px;}
-  @media @mq-desktop {margin-bottom: 30px;}
+  @media @mq-phone {margin-bottom: @spacing-tiny;}
+  @media @mq-tablet {margin-bottom: @spacing-small;}
+  @media @mq-desktop {margin-bottom: @spacing-standard;}
 }
+
+
+
 

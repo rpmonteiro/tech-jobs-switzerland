@@ -2,7 +2,7 @@
 
 .job-card {
   display: flex;
-  padding: @spacing-standard;
+  padding: @spacing-small;
   border-radius: 2px;
   background-color: @white;
   box-shadow: 0 1px 0px rgba(0, 0, 0, 0.12);
@@ -12,14 +12,14 @@
     font-weight: @font-weight-bold;
     color: @font-color-2;
     text-align: right;
-    margin-top: @spacing-tiny;
-    margin-right: @spacing-standard;
+    margin-top: @spacing-min;
+    margin-right: @spacing-small;
     font-size: @font-size-smaller;
   }
 
   &__container {
     & + & {
-      margin-top: @spacing-larger;
+      margin-top: @spacing-small;
     }
   }
 
@@ -31,6 +31,6 @@
   }
 
   &__content {
-    margin-left: @spacing-standard;
+    margin-left: @spacing-small;
   }
 }
