@@ -1,5 +1,6 @@
 import * as preact from 'preact'
 import { Link } from '../link'
+import { Divider } from '../divider/divider';
 import logoSvg from '../../assets/logo.svg'
 import { Button } from '../button'
 import './styles.less'
@@ -11,6 +12,9 @@ export const NavBar = () => (
         <img src={logoSvg} />
       </Link>
       <Button className="navbar__button" text="Post a job" to="/post-a-job" />
+    </div>
+    <div className="navbar__divider">
+      <Divider />
     </div>
   </nav>
 )

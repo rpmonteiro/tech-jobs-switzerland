@@ -1,32 +1,35 @@
 @import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
 
 @small-navbar-height: 50px;
-@navbar-height: 65px;
+@navbar-height: 57px;
 
 .navbar {
-  padding: @spacing-standard 0;
-
   &__container {
     height: @navbar-height;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-
-    @media @tiny-phone {
+    margin-top: 16px;
+    margin-bottom: 29px;
+    @media @mq-phone {
       height: @small-navbar-height;
+      margin-bottom: 23px;
     }
   }
-
   &__logo {
     display: flex;
-
     img {
       height: @navbar-height;
-
-      @media @tiny-phone {
+      @media @mq-phone {
         height: @small-navbar-height;
+
       }
     }
+  }
+  &__divider {
+    .marBotSmall();
   }
 }
 

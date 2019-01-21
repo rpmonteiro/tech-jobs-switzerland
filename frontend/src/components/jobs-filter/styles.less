@@ -2,23 +2,19 @@
 @import '../../styles/mixins.less';
 
 .jobs-filter {
-  margin-left: @spacing-huge;
+  margin-left: @spacing-max;
 
-  @media @tablet {
+  @media @mq-tablet {
     flex: 1;
   }
 
-  @media @desktop {
+  @media @mq-desktop {
     flex: 0.7;
-  }
-
-  @media @big-desktop {
-    flex: 0.5;
   }
 
   &__sticky-container {
     position: sticky;
-    top: @spacing-huge;
+    top: @spacing-max;
   }
 
   &__options-container {
@@ -69,6 +65,6 @@
   &__icon {
     pointer-events: none;
     height: 20px;
-    margin-right: @spacing-tiny;
+    margin-right: @spacing-min;
   }
 }
