@@ -4,6 +4,7 @@ import cn from 'classnames'
 import { toggleArrayValue } from '../../utils/helpers'
 import filterIcons from '../../assets/*.png'
 import './styles.less'
+import { utilClasses } from '../../utils/util-classes'
 
 interface JobFilterProps {
   changeHandler: (filter: JobCategory[]) => void
@@ -54,7 +55,7 @@ export class JobsFilter extends preact.Component<JobFilterProps> {
     ))
 
     return (
-      <div class="jobs-filter">
+      <div class={cn(utilClasses.noPhones, 'jobs-filter')}>
         <div class="jobs-filter__sticky-container">
           <div class="jobs-filter__header">tech jobs:</div>
           <div class="jobs-filter__options-container">{opts}</div>
