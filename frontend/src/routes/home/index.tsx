@@ -41,8 +41,8 @@ export class Home extends preact.Component<{}, State> {
       <div class="home-page">
         {/* <WhyPostCta /> */}
         <div className="home-page__content">
-          <JobList filter={filter} jobs={jobs} />
           <JobsFilter filter={filter} changeHandler={this.filterChangeHandler} />
+          <JobList filter={filter} jobs={jobs} />
         </div>
       </div>
     )

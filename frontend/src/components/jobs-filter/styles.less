@@ -2,14 +2,13 @@
 @import '../../styles/mixins.less';
 
 .jobs-filter {
-  .marLeftLarge();
-
   @media @mq-tablet {
-    flex: 1;
+    flex: 0.7;
+    .marLeftLarge();
   }
 
   @media @mq-desktop {
-    flex: 0.7;
+    flex: 0.6;
   }
 
   &__sticky-container {
@@ -41,6 +40,11 @@
     align-items: center;
     text-align: center;
     color: @font-color-1;
+    white-space: nowrap;
+
+    @media @mq-tablet {
+      white-space: normal;
+    }
 
     &-selected,
     &:hover {

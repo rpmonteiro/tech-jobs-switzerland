@@ -53,11 +53,10 @@ export class JobsFilter extends preact.Component<JobFilterProps> {
         </span>
       </div>
     ))
-
     return (
-      <div class={cn(utilClasses.noPhones, 'jobs-filter')}>
+      <div class="jobs-filter">
         <div class="jobs-filter__sticky-container">
-          <div class="jobs-filter__header">tech jobs:</div>
+          <div class={cn(utilClasses.noPhones, 'jobs-filter__header')}>tech jobs:</div>
           <div class="jobs-filter__options-container">{opts}</div>
         </div>
       </div>

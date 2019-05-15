@@ -3,6 +3,10 @@
 .home-page {
   &__content {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+
+    @media @mq-tablet {
+      flex-direction: row-reverse;
+    }
   }
 }
